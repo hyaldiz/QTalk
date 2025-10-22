@@ -21,6 +21,8 @@ qt_add_executable(appQTalk
     src/llama/LlamaWorker_p.h
     src/llama/LlamaWorker.cpp
     src/llama/LlamaWorker_p.cpp
+    src/llama/ChatEngine.h
+    src/llama/ChatEngine.cpp
 )
 
 qt_add_qml_module(appQTalk

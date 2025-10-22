@@ -1,11 +1,17 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+
+#include "llama/ChatEngine.h"
+
+#define MODEL_PATH "/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
     const QUrl url(QStringLiteral("qrc:/QTalk/main.qml"));
     QObject::connect(
         &engine,
@@ -16,7 +22,14 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
+
+
+    ChatEngine chatEngine;
+    engine.rootContext()->setContextProperty("llamaChat", &chatEngine);
+
     engine.load(url);
+
+    //chatEngine.load(MODEL_PATH,2048,0);
 
     return app.exec();
 }
