@@ -1,0 +1,57 @@
+qt_add_library(QTalkModule STATIC)
+
+# ----------------------------------------------------------------------------
+# QML Resources
+# ----------------------------------------------------------------------------
+set_source_files_properties(UI/MainRootWindow.qml
+    PROPERTIES
+        QT_RESOURCE_ALIAS MainRootWindow.qml
+)
+
+qt_add_qml_module(QTalkModule
+    URI QTalk
+    VERSION 1.0
+    RESOURCE_PREFIX /qml
+    QML_FILES
+        UI/MainRootWindow.qml
+    IMPORTS
+        QTK
+    NO_PLUGIN
+)
+
+qt_policy(SET QTP0004 NEW)
+
+add_subdirectory(llama)
+add_subdirectory(UI)
+
+target_sources(${CMAKE_PROJECT_NAME}
+    PRIVATE
+    main.cpp
+)
+
+target_include_directories(${CMAKE_PROJECT_NAME} 
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    PRIVATE
+        Qt6::Core
+        Qt6::Widgets
+        Qt6::Gui
+        Qt6::Concurrent
+        Qt6::Qml
+        Qt6::QmlIntegration
+        Qt6::QuickControls2
+        Qt6::QuickWidgets
+        Qt6::Quick
+
+        #QTK Modules
+        QTalkModule
+)
+
+set_target_properties(${CMAKE_PROJECT_NAME}
+    PROPERTIES
+    QT_RESOURCE_PREFIX "/qml"
+    OUTPUT_NAME ${CMAKE_PROJECT_NAME}
+)

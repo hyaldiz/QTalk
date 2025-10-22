@@ -1,57 +1,73 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.25)
 
-project(QTalk VERSION 0.1 LANGUAGES CXX)
-
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-set(LLAMA_NATIVE ON CACHE BOOL "" FORCE)
-set(GGML_OPENMP ON CACHE BOOL "" FORCE)
-set(LLAMA_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE) # statik tercih ediyorsan
-
-find_package(Qt6 6.2 COMPONENTS Core Gui Qml Quick REQUIRED)
-
-qt_add_executable(appQTalk
-    src/main.cpp
-    src/llama/LlamaWorker.h
-    src/llama/LlamaWorker_p.h
-    src/llama/LlamaWorker.cpp
-    src/llama/LlamaWorker_p.cpp
-    src/llama/ChatEngine.h
-    src/llama/ChatEngine.cpp
+list(APPEND CMAKE_MODULE_PATH
+    ${CMAKE_SOURCE_DIR}/cmake
+    ${CMAKE_SOURCE_DIR}/cmake/modules
 )
 
-qt_add_qml_module(appQTalk
-    URI QTalk
+# ----------------------------------------------------------------------------
+# Default Build Type
+# ----------------------------------------------------------------------------
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Build type (Debug or Release)" FORCE)
+    set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Available configuration types" FORCE)
+    message(STATUS "No build type specified. Defaulting to Release.")
+endif()
+
+# ----------------------------------------------------------------------------
+# CMake Policy Configuration
+# ----------------------------------------------------------------------------
+set(CMAKE_REQUIRED_QUIET ON)
+set(CMAKE_POLICY_VERSION_MINIMUM ${CMAKE_MINIMUM_REQUIRED_VERSION})
+
+
+include(Toolchain)
+include(CustomOptions)
+include(Git)
+
+project(${APP_NAME}
+    VERSION ${APP_VERSION}
+    DESCRIPTION ${APP_DESCRIPTION}
+    LANGUAGES C CXX
+)
+
+find_package(Qt6
+    REQUIRED
+    COMPONENTS
+    Core
+    Gui
+    Widgets
+    Concurrent
+    Qml
+    QmlIntegration
+    QuickControls2
+    QuickWidgets
+    Quick
+)
+
+# ----------------------------------------------------------------------------
+# Qt Policies (Enable modern Qt6 behaviors)
+# ----------------------------------------------------------------------------
+qt_policy(
+    SET QTP0001 NEW  # Modern resource handling
+    SET QTP0002 NEW  # New behavior for QML module URI
+    SET QTP0003 NEW  # Better QML type registration
+    SET QTP0004 NEW  # Improved translation handling
+    SET QTP0005 NEW  # Enhanced deployment handling
+)
+
+qt_add_executable(${CMAKE_PROJECT_NAME}
+    #RESOURCES
+)
+
+qt_add_qml_module(${CMAKE_PROJECT_NAME}
+    URI QTK
     VERSION 1.0
-    QML_FILES main.qml 
+    RESOURCE_PREFIX /qml
+    IMPORTS
+        QtQuick
+        QtQuick.Controls
 )
 
-add_subdirectory(libs/llama.cpp)
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-set_target_properties(appQTalk PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appQTalk
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
-
-target_include_directories(appQTalk PRIVATE libs/llama.cpp)
-target_link_libraries(appQTalk
-    PRIVATE
-      Qt6::Core Qt6::Gui Qt6::Qml Qt6::Quick
-      llama                         # llama.cpp’nin oluşturduğu hedef
-)
-
-include(GNUInstallDirs)
-install(TARGETS appQTalk
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+add_subdirectory(${CMAKE_SOURCE_DIR}/libs/llama.cpp)
+add_subdirectory(src)

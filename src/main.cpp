@@ -12,7 +12,9 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    const QUrl url(QStringLiteral("qrc:/QTalk/main.qml"));
+    engine.addImportPath(QStringLiteral("qrc:/qml"));
+
+    const QUrl url(QStringLiteral("qrc:/qml/QTalk/MainRootWindow.qml"));
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,
