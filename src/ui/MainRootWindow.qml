@@ -1,17 +1,13 @@
 import QTalk
+import QTalk.Controls
 
-import QtQuick.Layouts
-
-ApplicationWindow
-{
+ApplicationWindow {
     visible: true
 
     width: 800
     height: 480
 
-    RowLayout
-    {
+    ChatThread {
         anchors.fill: parent
-
     }
 }

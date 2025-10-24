@@ -25,9 +25,9 @@ include(Toolchain)
 include(CustomOptions)
 include(Git)
 
-project(${APP_NAME}
-    VERSION ${APP_VERSION}
-    DESCRIPTION ${APP_DESCRIPTION}
+project(${QTK_APP_NAME}
+    VERSION ${QTK_APP_VERSION}
+    DESCRIPTION ${QTK_APP_DESCRIPTION}
     LANGUAGES C CXX
 )
 
