@@ -4,8 +4,6 @@ import QtQuick.Controls
 Rectangle {
     id: chatThread
 
-    color: "blue"
-
     ListModel {
         id: model
         ListElement { sender: true ; message: "Selam"}

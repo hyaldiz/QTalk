@@ -19,5 +19,8 @@ qt_add_qml_module(QTalkControlsModule
     QML_FILES
     ChatBubble.qml
     ChatThread.qml
+    ChatInput.qml
+    QTKIconButton.qml
+    QTKIcon.qml
     ScreenTools.qml
 )
