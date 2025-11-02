@@ -29,7 +29,6 @@ CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
-*.cmake
 compile_commands.json
 
 # Qt resource and MOC generated files
