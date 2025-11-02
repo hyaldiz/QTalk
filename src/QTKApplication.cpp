@@ -1,6 +1,9 @@
 #include "QTKApplication.h"
 #include "QTKApplication_p.h"
 #include "QTKCorePlugin.h"
+#include "QTKLoggingCategory.h"
+
+QTK_LOGGING_CATEGORY(QTKApplicationLog,"QTKApplicationLog")
 
 QTKApplication::QTKApplication(int argc, char** argv)
     : QApplication(argc,argv)
@@ -23,6 +26,8 @@ void QTKApplication::init()
     QObject::connect(d->m_qmlEngine,&QQmlApplicationEngine::objectCreationFailed,this,&QCoreApplication::quit,Qt::QueuedConnection);
 
     QTKCorePlugin::instance()->createMainRootWindow(d->m_qmlEngine);
+
+    qInfo(QTKApplicationLog) << "Application initiated successfully.";
 }
 
 void QTKApplication::initCommon()

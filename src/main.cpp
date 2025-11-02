@@ -1,7 +1,10 @@
 #include "QTKApplication.h"
+#include "AppMessages.h"
 
 int main(int argc, char** argv)
 {
+    AppMessages::installHandler();
+
     QTKApplication app(argc,argv);
 
     app.init();

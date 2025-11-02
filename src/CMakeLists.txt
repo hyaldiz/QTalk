@@ -29,9 +29,13 @@ add_subdirectory(chat)
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
     main.cpp
+    AppMessages.h
+    AppMessages.cpp
     QTKApplication.h
     QTKApplication_p.h
     QTKApplication.cpp
+    QTKLoggingCategory.h
+    QTKLoggingCategory.cpp
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} 

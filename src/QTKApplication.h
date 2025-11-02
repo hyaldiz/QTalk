@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QApplication>
+#include <QLoggingCategory>
 
 #include <memory>
 
@@ -17,6 +18,8 @@ class QTKApplication;
 #define qGuiApp (static_cast<QTKApplication*>(QGuiApplication::instance()))
 
 #define qtalkApp() qApp
+
+Q_DECLARE_LOGGING_CATEGORY(QTKApplicationLog)
 
 class QTKApplication : public QApplication
 {
