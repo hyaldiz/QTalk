@@ -7,11 +7,9 @@
 class LlamaWorker : public QObject
 {
     Q_OBJECT
-
     Q_DISABLE_COPY_MOVE(LlamaWorker)
 
     friend class LlamaWorkerPrivate;
-
 public:
     explicit LlamaWorker(QObject* parent = nullptr);
     ~LlamaWorker() override;
