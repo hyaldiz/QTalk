@@ -4,7 +4,7 @@
 #include <QApplicationStatic>
 #include <QQmlApplicationEngine>
 
-Q_APPLICATION_STATIC(QTKCorePlugin, qtkCorePluginInstance)
+Q_APPLICATION_STATIC(QTKCorePlugin, _qtkCorePluginInstance)
 
 QTKCorePlugin::QTKCorePlugin(QObject* parent)
     : QObject(parent)
@@ -19,7 +19,7 @@ QTKCorePlugin::~QTKCorePlugin()
 
 QTKCorePlugin* QTKCorePlugin::instance()
 {
-    return qtkCorePluginInstance();
+    return _qtkCorePluginInstance();
 }
 
 QQmlApplicationEngine* QTKCorePlugin::createQmlApplicationEngine(QObject* parent)

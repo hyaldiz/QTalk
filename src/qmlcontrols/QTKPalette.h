@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QColor>
 #include <QMap>
+#include <QtQmlIntegration/QtQmlIntegration>
 
 #define DECLARE_QTK_COLOR(name, lightDisabled, lightEnabled, darkDisabled, darkEnabled) \
 { \
@@ -61,6 +62,7 @@ Q_PROPERTY(QColor NAME READ NAME WRITE SETNAME NOTIFY paletteChanged) \
 class QTKPalette : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
 
     Q_PROPERTY(Theme        globalTheme        READ globalTheme        WRITE setGlobalTheme        NOTIFY paletteChanged)
     Q_PROPERTY(bool         colorGroupEnabled  READ colorGroupEnabled  WRITE setColorGroupEnabled  NOTIFY paletteChanged)

@@ -1,6 +1,10 @@
 #include "ChatManager.h"
 #include "Message.h"
 
+#include <QApplicationStatic>
+
+Q_APPLICATION_STATIC(ChatManager, _chatManagerInstance)
+
 ChatManager::ChatManager(QObject *parent) :
     QObject(parent),
     m_recentChatList(new RecentChatList(this)),
@@ -11,6 +15,11 @@ ChatManager::ChatManager(QObject *parent) :
     connect(this, &ChatManager::sendMessage, this, &ChatManager::onSendMessage, Qt::QueuedConnection);
 
     m_recentChatProxyList->setSourceModel(m_recentChatList);
+}
+
+ChatManager *ChatManager::instance()
+{
+    return _chatManagerInstance();
 }
 
 RecentChatList *ChatManager::recentChatList() const

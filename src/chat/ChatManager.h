@@ -8,8 +8,14 @@
 class ChatManager : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("")
+
+    Q_PROPERTY(RecentChatProxtList* recentChats READ recentChatProxtList CONSTANT)
 public:
     explicit ChatManager(QObject* parent = nullptr);
+
+    static ChatManager* instance();
 
     RecentChatList* recentChatList() const;
 
