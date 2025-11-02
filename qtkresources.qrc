@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix ="icons">
+        <file alias="send.png">resources/icons/send.png</file>
+    </qresource>
+</RCC>

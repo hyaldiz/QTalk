@@ -23,6 +23,7 @@ qt_policy(SET QTP0004 NEW)
 
 add_subdirectory(llama)
 add_subdirectory(qmlcontrols)
+add_subdirectory(chat)
 
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE

@@ -56,8 +56,12 @@ qt_policy(
     SET QTP0005 NEW  # Enhanced deployment handling
 )
 
+list(APPEND QTK_RESOURCES
+    "${CMAKE_SOURCE_DIR}/qtkresources.qrc"
+)
+
 qt_add_executable(${CMAKE_PROJECT_NAME}
-    #RESOURCES
+    ${QTK_RESOURCES}
 )
 
 qt_add_qml_module(${CMAKE_PROJECT_NAME}
