@@ -1,37 +1,52 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
+#include "QTKApplication.h"
 
-#include "llama/ChatEngine.h"
-
-#define MODEL_PATH "/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
-
-int main(int argc, char *argv[])
+int main(int argc, char** argv)
 {
-    QGuiApplication app(argc, argv);
+    QTKApplication app(argc,argv);
 
-    QQmlApplicationEngine engine;
+    app.init();
 
-    engine.addImportPath(QStringLiteral("qrc:/qml"));
+    int exitCode = app.exec();
 
-    const QUrl url(QStringLiteral("qrc:/qml/QTalk/MainRootWindow.qml"));
-    QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreated,
-        &app,
-        [url](QObject *obj, const QUrl &objUrl) {
-            if (!obj && url == objUrl)
-                QCoreApplication::exit(-1);
-        },
-        Qt::QueuedConnection);
+    qInfo() << "App closed exit code: " << exitCode;
 
-
-    ChatEngine chatEngine;
-    engine.rootContext()->setContextProperty("llamaChat", &chatEngine);
-
-    engine.load(url);
-
-    //chatEngine.load(MODEL_PATH,2048,0);
-
-    return app.exec();
+    return exitCode;
 }
+
+// #include <QGuiApplication>
+// #include <QQmlApplicationEngine>
+// #include <QQmlContext>
+
+// #include "llama/ChatEngine.h"
+
+// #define MODEL_PATH "/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+
+// int main(int argc, char *argv[])
+// {
+//     QGuiApplication app(argc, argv);
+
+//     QQmlApplicationEngine engine;
+
+//     engine.addImportPath(QStringLiteral("qrc:/qml"));
+
+//     const QUrl url(QStringLiteral("qrc:/qml/QTalk/MainRootWindow.qml"));
+//     QObject::connect(
+//         &engine,
+//         &QQmlApplicationEngine::objectCreated,
+//         &app,
+//         [url](QObject *obj, const QUrl &objUrl) {
+//             if (!obj && url == objUrl)
+//                 QCoreApplication::exit(-1);
+//         },
+//         Qt::QueuedConnection);
+
+
+//     ChatEngine chatEngine;
+//     engine.rootContext()->setContextProperty("llamaChat", &chatEngine);
+
+//     engine.load(url);
+
+//     //chatEngine.load(MODEL_PATH,2048,0);
+
+//     return app.exec();
+// }

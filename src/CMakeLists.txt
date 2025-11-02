@@ -22,6 +22,7 @@ qt_add_qml_module(QTalkModule
 qt_policy(SET QTP0004 NEW)
 
 add_subdirectory(llama)
+add_subdirectory(api)
 add_subdirectory(qmlcontrols)
 add_subdirectory(chat)
 
