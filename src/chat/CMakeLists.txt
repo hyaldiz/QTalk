@@ -9,12 +9,12 @@ target_sources(${CMAKE_PROJECT_NAME}
     Message.cpp
     ChatList.h
     ChatList.cpp
-    RecentChat.h
-    RecentChat.cpp
-    RecentChatList.h
-    RecentChatList.cpp
-    RecentChatProxyList.h
-    RecentChatProxyList.cpp
+    User.h
+    User.cpp
+    UserList.h
+    UserList.cpp
+    UserProxyList.h
+    UserProxyList.cpp
     ChatManager.h
     ChatManager.cpp
 )

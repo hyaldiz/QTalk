@@ -24,8 +24,8 @@ QVariant ChatList::data(const QModelIndex &index, int role) const
 
     Message* message = m_messages.at(index.row());
 
-    if (role == RecentChatIDRole)
-        return message->recentChatID();
+    if (role == IDRole)
+        return message->ID();
     else if (role == TimeRole)
         return message->time();
     else if (role == ContentsRole)
@@ -37,7 +37,7 @@ QVariant ChatList::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> ChatList::roleNames() const
 {
     QHash<int, QByteArray> roles;
-    roles[RecentChatIDRole] = "recentChatID";
+    roles[IDRole] = "ID";
     roles[TimeRole] = "time";
     roles[ContentsRole] = "contents";
 

@@ -2,11 +2,11 @@
 
 #include <QTime>
 
-Message::Message(const QString& contents, int recentChatID, QObject* parent)
+Message::Message(const QString& contents, int ID, QObject* parent)
     : QObject(parent)
     , m_contents(contents)
     , m_time(QTime::currentTime().toString("HH:mm"))
-    , m_recentChatID(recentChatID)
+    , m_ID(ID)
 {
 
 }
@@ -21,7 +21,7 @@ const QString &Message::time() const
     return m_time;
 }
 
-int Message::recentChatID() const
+int Message::ID() const
 {
-    return m_recentChatID;
+    return m_ID;
 }

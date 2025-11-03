@@ -1,21 +1,11 @@
 import QtQuick
 import QtQuick.Controls
 
+import QTalk
+import QTalk.Controls
+
 Rectangle {
     id: chatThread
-
-    ListModel {
-        id: model
-        ListElement { sender: true ; message: "Selam"}
-        ListElement { sender: false ; message: "Selam"}
-        ListElement { sender: true ; message: "Bugün günlerden ne?"}
-        ListElement { sender: true ; message: "Söyler misin?"}
-        ListElement { sender: false ; message: "Cuma saat 15:07"}
-    }
-
-    Component.onCompleted: {
-        openedChatList.model = model
-    }
 
     ListView {
         id: openedChatList
@@ -25,6 +15,7 @@ Rectangle {
         spacing: 8
         clip: true
         highlightFollowsCurrentItem: true
+        model: QTalk.chatManager.openedChatUser.messages
 
         onCountChanged: {
             openedChatList.currentIndex = count - 1

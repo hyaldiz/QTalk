@@ -2,8 +2,8 @@
 
 #include <QObject>
 
-#include "RecentChatList.h"
-#include "RecentChatProxyList.h"
+#include "UserList.h"
+#include "UserProxyList.h"
 
 class ChatManager : public QObject
 {
@@ -11,31 +11,33 @@ class ChatManager : public QObject
     QML_ELEMENT
     QML_UNCREATABLE("")
 
-    Q_PROPERTY(RecentChatProxtList* recentChats READ recentChatProxtList CONSTANT)
+    Q_PROPERTY(User* openedChatUser READ openedChatUser WRITE setOpenedChatUser NOTIFY openedChatUserChanged)
+    Q_PROPERTY(User* mainUser READ mainUser CONSTANT)
+
 public:
     explicit ChatManager(QObject* parent = nullptr);
 
     static ChatManager* instance();
 
-    RecentChatList* recentChatList() const;
+    UserList* userList() const;
 
-    RecentChat* openedChatRecentChat() const;
-    void setOpenedChatRecentChat(RecentChat* newOpenedChatRecentChat);
+    User* openedChatUser() const;
+    void setOpenedChatUser(User* newOpenedUser);
 
-    RecentChat* mainRecentChat() const;
+    User* mainUser() const;
 
-    RecentChatProxtList* recentChatProxtList() const;
+    UserProxyList* userProxyList() const;
 
 signals:
-    void openedChatRecentChatChanged();
+    void openedChatUserChanged();
     void sendMessage(const QString& message);
 
 public Q_SLOTS:
     void onSendMessage(const QString& message);
 
 private:
-    RecentChatList* m_recentChatList;
-    RecentChatProxtList* m_recentChatProxyList;
-    RecentChat* m_mainRecentChat;
-    RecentChat* m_openedChatRecentChat;
+    UserList* m_userList;
+    UserProxyList* m_userProxyList;
+    User* m_mainUser;
+    User* m_openedChatUser;
 };

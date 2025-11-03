@@ -1,10 +1,12 @@
 import QtQuick
 import QtQuick.Controls
 
+import QTalk
+
 Item {
     id: chatBubble
 
-    property bool sender: model.sender
+    property bool sender: ID === QTalk.chatManager.mainUser.ID
 
     width: ListView.view ? ListView.view.width : 0
     height: bubble.height
@@ -23,7 +25,7 @@ Item {
             anchors.margins: 12
             wrapMode: Label.Wrap
             color: "#ffffff"
-            text: model.message
+            text: contents
             opacity: 0.75
             font.pixelSize: 12
             verticalAlignment: Qt.AlignVCenter

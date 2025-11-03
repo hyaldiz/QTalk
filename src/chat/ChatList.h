@@ -11,7 +11,7 @@ class ChatList : public QAbstractListModel
     using Messages_t = QList<Message*>;
 public:
     enum ChatRoles {
-        RecentChatIDRole = Qt::UserRole + 1,
+        IDRole = Qt::UserRole + 1,
         ContentsRole,
         TimeRole
     };

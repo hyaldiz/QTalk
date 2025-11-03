@@ -7,14 +7,14 @@ Q_APPLICATION_STATIC(ChatManager, _chatManagerInstance)
 
 ChatManager::ChatManager(QObject *parent) :
     QObject(parent),
-    m_recentChatList(new RecentChatList(this)),
-    m_recentChatProxyList(new RecentChatProxtList(this)),
-    m_mainRecentChat(new RecentChat(0, "New chat", this)),
-    m_openedChatRecentChat(Q_NULLPTR)
+    m_userList(new UserList(this)),
+    m_userProxyList(new UserProxyList(this)),
+    m_mainUser(new User(0, "Main", this)),
+    m_openedChatUser(new User(1,"Talker", this))
 {
     connect(this, &ChatManager::sendMessage, this, &ChatManager::onSendMessage, Qt::QueuedConnection);
 
-    m_recentChatProxyList->setSourceModel(m_recentChatList);
+    m_userProxyList->setSourceModel(m_userList);
 }
 
 ChatManager *ChatManager::instance()
@@ -22,37 +22,37 @@ ChatManager *ChatManager::instance()
     return _chatManagerInstance();
 }
 
-RecentChatList *ChatManager::recentChatList() const
+UserList *ChatManager::userList() const
 {
-    return m_recentChatList;
+    return m_userList;
 }
 
-RecentChat *ChatManager::openedChatRecentChat() const
+User *ChatManager::openedChatUser() const
 {
-    return m_openedChatRecentChat;
+    return m_openedChatUser;
 }
 
-void ChatManager::setOpenedChatRecentChat(RecentChat *newOpenedChatRecentChat)
+void ChatManager::setOpenedChatUser(User* newOpenedChatUser)
 {
-    if (m_openedChatRecentChat == newOpenedChatRecentChat)
+    if (m_openedChatUser == newOpenedChatUser)
         return;
-    m_openedChatRecentChat = newOpenedChatRecentChat;
-    emit openedChatRecentChatChanged();
+    m_openedChatUser = newOpenedChatUser;
+    emit openedChatUserChanged();
 }
 
-RecentChat *ChatManager::mainRecentChat() const
+User *ChatManager::mainUser() const
 {
-    return m_mainRecentChat;
+    return m_mainUser;
 }
 
 void ChatManager::onSendMessage(const QString &message)
 {
-    if(m_openedChatRecentChat == Q_NULLPTR)
+    if(m_openedChatUser == Q_NULLPTR)
         return;
-    m_openedChatRecentChat->addMessage(new Message(message, m_mainRecentChat->ID(), m_openedChatRecentChat));
+    m_openedChatUser->addMessage(new Message(message, m_mainUser->ID(), m_openedChatUser));
 }
 
-RecentChatProxtList *ChatManager::recentChatProxtList() const
+UserProxyList *ChatManager::userProxyList() const
 {
-    return m_recentChatProxyList;
+    return m_userProxyList;
 }

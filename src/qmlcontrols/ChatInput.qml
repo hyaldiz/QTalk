@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import QTalk
+
 Rectangle {
     id: chatInput
     height: 55
@@ -97,8 +99,11 @@ Rectangle {
     }
 
     function sendMessage() {
-        console.log("Send Message")
-    }
+        if(messageField.text === "")
+            return;
 
-    Component.onCompleted: updateLayout()
+        QTalk.chatManager.sendMessage(messageField.text);
+
+        messageField.clear()
+    }
 }

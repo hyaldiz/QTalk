@@ -2,22 +2,22 @@
 
 #include <QAbstractListModel>
 
-#include "RecentChat.h"
+#include "User.h"
 
-class RecentChatList : public QAbstractListModel
+class UserList : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    enum RecentChatRoles{
+    enum UserRoles{
         IDRole = Qt::UserRole + 1,
         NameRole,
-        RecentChatObjectRole
+        UserObjectRole
     };
 
-    explicit RecentChatList(QObject* parent = nullptr);
+    explicit UserList(QObject* parent = nullptr);
 
-    const QList<RecentChat*>& recentChats() const;
-    void setRecentChats(const QList<RecentChat*> &newRecentChats);
+    const QList<User*>& users() const;
+    void setUsers(const QList<User*> &newUsers);
 
     int rowCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
@@ -25,8 +25,8 @@ public:
     QHash<int, QByteArray> roleNames() const;
 
 signals:
-    void recentChatsChanged();
+    void usersChanged();
 
 private:
-    QList<RecentChat*> m_recentChats;
+    QList<User*> m_users;
 };
