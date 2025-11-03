@@ -5,6 +5,8 @@
 #include "UserList.h"
 #include "UserProxyList.h"
 
+class ChatEngine;
+
 class ChatManager : public QObject
 {
     Q_OBJECT
@@ -34,10 +36,13 @@ signals:
 
 public Q_SLOTS:
     void onSendMessage(const QString& message);
+    void askHandler(const QString& message);
 
 private:
     UserList* m_userList;
     UserProxyList* m_userProxyList;
     User* m_mainUser;
     User* m_openedChatUser;
+
+    ChatEngine* m_chatEngine;
 };

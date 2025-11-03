@@ -1,6 +1,9 @@
 #pragma once
 
 #include <QObject>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(LlamaLog)
 
 #include <memory>
 

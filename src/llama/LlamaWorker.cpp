@@ -1,10 +1,13 @@
 #include "LlamaWorker.h"
 #include "LlamaWorker_p.h"
+#include "QTKLoggingCategory.h"
 
 #include <QThread>
 #include <QDebug>
 
 #include <cstdio>
+
+QTK_LOGGING_CATEGORY(LlamaLog,"LlamaLog")
 
 LlamaWorker::LlamaWorker(QObject *parent)
     : QObject(parent)
@@ -38,16 +41,16 @@ void LlamaWorker::loadModel(const QString &path, int nCtx, int nGpuLayers)
         switch (static_cast<int>(lvl)) {
         case GGML_LOG_LEVEL_NONE:
         case GGML_LOG_LEVEL_DEBUG:
-            qDebug() << text;
+            qDebug(LlamaLog) << text;
             break;
         case GGML_LOG_LEVEL_INFO:
-            qInfo() << text;
+            qInfo(LlamaLog) << text;
             break;
         case GGML_LOG_LEVEL_WARN:
-            qWarning() << text;
+            qWarning(LlamaLog) << text;
             break;
         case GGML_LOG_LEVEL_ERROR:
-            qFatal() << text;
+            qFatal(LlamaLog) << text;
             break;
         }
     }, nullptr);
