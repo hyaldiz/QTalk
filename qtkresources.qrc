@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix ="icons">
         <file alias="send.png">resources/icons/send.png</file>
+        <file alias="stop.png">resources/icons/stop.png</file>
     </qresource>
 </RCC>

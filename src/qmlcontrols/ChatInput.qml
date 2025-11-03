@@ -67,6 +67,8 @@ Rectangle {
             selectByMouse: true
             background: Rectangle { color: "transparent" }
 
+            enabled: !QTalk.chatManager.openedChatUser.writing
+
             readonly property int padd: topPadding + bottomPadding
             implicitHeight: Math.ceil(contentHeight) + padd
 
@@ -94,8 +96,15 @@ Rectangle {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 8
-        icon.path: ScreenTools.iconSend
-        onClicked: chatInput.sendMessage()
+        icon.path: QTalk.chatManager.openedChatUser.writing ? ScreenTools.iconStop : ScreenTools.iconSend
+        onClicked: {
+            if(QTalk.chatManager.openedChatUser.writing) {
+                QTalk.chatManager.stop()
+                return
+            }
+
+            chatInput.sendMessage()
+        }
     }
 
     function sendMessage() {

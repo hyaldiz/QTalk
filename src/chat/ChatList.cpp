@@ -30,6 +30,8 @@ QVariant ChatList::data(const QModelIndex &index, int role) const
         return message->time();
     else if (role == ContentsRole)
         return message->contents();
+    else if(role == FailedRole)
+        return message->failed();
     else
         return QVariant();
 }
@@ -40,6 +42,7 @@ QHash<int, QByteArray> ChatList::roleNames() const
     roles[IDRole] = "ID";
     roles[TimeRole] = "time";
     roles[ContentsRole] = "contents";
+    roles[FailedRole] = "failed";
 
     return roles;
 }
@@ -48,6 +51,23 @@ void ChatList::append(Message *message)
 {
     beginInsertRows(QModelIndex(), m_messages.count(), m_messages.count());
     m_messages.append(message);
+
+    connect(message, &Message::contentsChanged, this, [this,message](){
+        const int r = m_messages.indexOf(message);
+        if(r >= 0) {
+            QModelIndex idx = index(r, 0);
+            emit dataChanged(idx, idx, {ContentsRole});
+        }
+    });
+
+    connect(message, &Message::failedChanged, this, [this,message](){
+        const int r = m_messages.indexOf(message);
+        if(r >= 0) {
+            QModelIndex idx = index(r, 0);
+            emit dataChanged(idx, idx, {FailedRole});
+        }
+    });
+
     endInsertRows();
 
     emit countChanged();

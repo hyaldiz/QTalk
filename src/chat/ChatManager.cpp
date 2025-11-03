@@ -13,12 +13,29 @@ ChatManager::ChatManager(QObject *parent)
     , m_mainUser(new User(0, "MeAndYou", this))
     , m_openedChatUser(new User(1,"LLMModel", this))
     , m_chatEngine(new ChatEngine(this))
-
+    , m_lastMessage(nullptr)
 {
     connect(this, &ChatManager::sendMessage, this, &ChatManager::onSendMessage, Qt::QueuedConnection);
-    connect(this, &ChatManager::sendMessage, this, &ChatManager::askHandler, Qt::QueuedConnection);
+    connect(this, &ChatManager::sendMessage, this, &ChatManager::onAsk, Qt::QueuedConnection);
+
+    connect(m_chatEngine, &ChatEngine::tokenArrived, this, &ChatManager::onTokenArrived, Qt::QueuedConnection);
+    connect(m_chatEngine, &ChatEngine::responseDone, this, &ChatManager::onResponseDone, Qt::QueuedConnection);
+    connect(m_chatEngine, &ChatEngine::error, this, &ChatManager::onError);
 
     m_userProxyList->setSourceModel(m_userList);
+
+    //Test section
+    m_chatEngine->load("/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf");
+
+    QTimer* tmr = new QTimer(this);
+
+    tmr->setInterval(15000);
+
+    connect(tmr, &QTimer::timeout, this, [this](){
+        emit m_chatEngine->error("");
+    });
+
+    //tmr->start();
 }
 
 ChatManager *ChatManager::instance()
@@ -56,9 +73,54 @@ void ChatManager::onSendMessage(const QString &message)
     m_openedChatUser->addMessage(new Message(message, m_mainUser->ID(), m_openedChatUser));
 }
 
-void ChatManager::askHandler(const QString &message)
+void ChatManager::onAsk(const QString &message)
 {
-    m_chatEngine->send("Merhaba");
+    if(!m_chatEngine->isModelReady() ) {
+        qWarning() << "Model is not ready";
+        return;
+    }
+
+    // if(m_lastMessage) {
+    //     qInfo() << "On going response exist";
+    //     return;
+    // }
+
+    m_openedChatUser->setWriting(true);
+    m_chatEngine->send(message);
+}
+
+void ChatManager::onTokenArrived(const QString &piece)
+{
+    if(m_lastMessage) {
+        m_lastMessage->appendToContents(piece);
+        return;
+    }
+
+    m_lastMessage = new Message(piece, m_openedChatUser->ID());
+    m_openedChatUser->addMessage(m_lastMessage);
+}
+
+void ChatManager::onError(const QString &message)
+{
+    Q_UNUSED(message)
+
+    if(m_lastMessage) {
+        m_openedChatUser->setWriting(false);
+        m_lastMessage->setFailed(true);
+        m_chatEngine->stop();
+    }
+}
+
+void ChatManager::onResponseDone()
+{
+    m_openedChatUser->setWriting(false);
+    m_lastMessage = nullptr;
+}
+
+void ChatManager::stop()
+{
+    m_openedChatUser->setWriting(false);
+    m_chatEngine->stop();
 }
 
 UserProxyList *ChatManager::userProxyList() const

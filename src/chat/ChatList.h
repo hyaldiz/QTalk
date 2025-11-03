@@ -13,7 +13,8 @@ public:
     enum ChatRoles {
         IDRole = Qt::UserRole + 1,
         ContentsRole,
-        TimeRole
+        TimeRole,
+        FailedRole
     };
 
     explicit ChatList(QObject* parent = nullptr);

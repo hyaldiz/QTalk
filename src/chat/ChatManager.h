@@ -36,7 +36,12 @@ signals:
 
 public Q_SLOTS:
     void onSendMessage(const QString& message);
-    void askHandler(const QString& message);
+    void onAsk(const QString& message);
+    void onTokenArrived(const QString& piece);
+    void onError(const QString& message);
+    void onResponseDone();
+
+    void stop();
 
 private:
     UserList* m_userList;
@@ -45,4 +50,5 @@ private:
     User* m_openedChatUser;
 
     ChatEngine* m_chatEngine;
+    Message* m_lastMessage;
 };

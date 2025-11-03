@@ -5,6 +5,7 @@ User::User(int id, const QString& name, QObject* parent)
     , m_ID(id)
     , m_name(name)
     , m_messages(new ChatList(this))
+    , m_writing(false)
 {
 
 }
@@ -28,4 +29,17 @@ void User::addMessage(Message *message)
 ChatList *User::messages() const
 {
     return m_messages;
+}
+
+bool User::writing() const
+{
+    return m_writing;
+}
+
+void User::setWriting(bool writing)
+{
+    if(writing != m_writing) {
+        m_writing = writing;
+        emit writingChanged();
+    }
 }

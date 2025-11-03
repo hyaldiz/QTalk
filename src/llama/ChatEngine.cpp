@@ -3,13 +3,14 @@
 
 #include <QMetaObject>
 
-ChatEngine::ChatEngine(QObject* parent) : QObject(parent) {
+ChatEngine::ChatEngine(QObject* parent)
+    : QObject(parent)
+{
     m_worker = new LlamaWorker();
     m_worker->moveToThread(&m_thread);
 
     connect(&m_thread, &QThread::finished, m_worker, &QObject::deleteLater);
 
-    // Worker sinyallerini UI tarafına köprüle
     connect(m_worker, &LlamaWorker::tokenReady, this, &ChatEngine::tokenArrived, Qt::QueuedConnection);
     connect(m_worker, &LlamaWorker::responseFinished, this, &ChatEngine::responseDone, Qt::QueuedConnection);
 
@@ -22,11 +23,11 @@ ChatEngine::ChatEngine(QObject* parent) : QObject(parent) {
     connect(m_worker, &LlamaWorker::modelLoadFailed, this, [this](const QString& e){
         m_ready = false;
         emit readyChanged(m_ready);
-        emit info("Model load error: " + e);
+        emit error("Model load error: " + e);
     }, Qt::QueuedConnection);
 
     connect(m_worker, &LlamaWorker::error, this, [this](const QString& e){
-        emit info("Error: " + e);
+        emit error("Error: " + e);
     }, Qt::QueuedConnection);
 
     m_thread.start();
@@ -58,10 +59,10 @@ void ChatEngine::send(const QString& text) {
 }
 
 void ChatEngine::stop() {
-    QMetaObject::invokeMethod(m_worker, "stop", Qt::QueuedConnection);
-}
+    //QMetaObject::invokeMethod(m_worker, "stop", Qt::QueuedConnection);
 
-#include <QDebug>
+    m_worker->stop();
+}
 
 void ChatEngine::unload() {
     m_ready = false;

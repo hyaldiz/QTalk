@@ -17,7 +17,7 @@ Item {
         height: messageText.implicitHeight + 24
         x: chatBubble.sender ? 0 : chatBubble.width - width
         radius: 12
-        color: chatBubble.sender ? "gray" : "green"
+        color: failed ? "red" : chatBubble.sender ? "gray" : "green"
 
         Text {
             id: messageText
@@ -27,9 +27,9 @@ Item {
             color: "#ffffff"
             text: contents
             opacity: 0.75
-            font.pixelSize: 12
+            font.pixelSize: 15
             verticalAlignment: Qt.AlignVCenter
-            horizontalAlignment: chatBubble.sender ? Qt.AlignLeft : Qt.AlignRight
+            horizontalAlignment: chatBubble.sender ? Qt.AlignRight : Qt.AlignLeft
         }
     }
 }

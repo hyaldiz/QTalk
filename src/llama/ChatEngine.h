@@ -18,10 +18,13 @@ public:
     Q_INVOKABLE void stop();
     Q_INVOKABLE void unload();
 
+    bool isModelReady() const { return m_ready; }
+
 signals:
     void tokenArrived(const QString& piece);
     void responseDone();
     void info(const QString& message);
+    void error(const QString& message);
     void readyChanged(bool ready);
 
 private:
