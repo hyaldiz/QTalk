@@ -64,3 +64,9 @@ set_target_properties(${CMAKE_PROJECT_NAME}
     QT_RESOURCE_PREFIX "/qml"
     OUTPUT_NAME ${CMAKE_PROJECT_NAME}
 )
+
+target_compile_definitions(${CMAKE_PROJECT_NAME}
+    PRIVATE
+        QTK_APP_NAME="${QTK_APP_NAME}"
+        QTK_APP_VERSION_STR="${QTK_APP_VERSION_STR}"
+)

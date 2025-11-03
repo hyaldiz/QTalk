@@ -9,7 +9,8 @@ QTKApplication::QTKApplication(int argc, char** argv)
     : QApplication(argc,argv)
     , d(new QTKApplicationPrivate)
 {
-
+    setApplicationName(QTK_APP_NAME);
+    setApplicationVersion(QString(QTK_APP_VERSION_STR));
 }
 
 QTKApplication::~QTKApplication()
@@ -19,8 +20,6 @@ QTKApplication::~QTKApplication()
 
 void QTKApplication::init()
 {
-    initCommon();
-
     d->m_qmlEngine = QTKCorePlugin::instance()->createQmlApplicationEngine(this);
 
     QObject::connect(d->m_qmlEngine,&QQmlApplicationEngine::objectCreationFailed,this,&QCoreApplication::quit,Qt::QueuedConnection);
@@ -28,11 +27,6 @@ void QTKApplication::init()
     QTKCorePlugin::instance()->createMainRootWindow(d->m_qmlEngine);
 
     qInfo(QTKApplicationLog) << "Application initiated successfully.";
-}
-
-void QTKApplication::initCommon()
-{
-
 }
 
 QObject* QTKApplication::rootQmlObject()

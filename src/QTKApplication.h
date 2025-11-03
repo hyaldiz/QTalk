@@ -35,7 +35,6 @@ public:
 
 private:
     QObject* rootQmlObject();
-    void initCommon();
 
     std::unique_ptr<class QTKApplicationPrivate> const d;
 };
