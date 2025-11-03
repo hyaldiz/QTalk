@@ -62,12 +62,10 @@ Rectangle {
             width: parent.width
             wrapMode: TextArea.Wrap
             placeholderText: qsTr("Ask something")
-            color: "white"
+            color: QTalk.palette.Text
             font.pixelSize: 15
             selectByMouse: true
             background: Rectangle { color: "transparent" }
-
-            enabled: !QTalk.chatManager.openedChatUser.writing
 
             readonly property int padd: topPadding + bottomPadding
             implicitHeight: Math.ceil(contentHeight) + padd
@@ -82,8 +80,8 @@ Rectangle {
                 const enter = (event.key === Qt.Key_Return || event.key === Qt.Key_Enter)
                 if (enter && !(event.modifiers & Qt.ShiftModifier)) {
                     event.accepted = true
-                    chatInput.sendMessage()
-                    messageField.clear()
+                    if(!QTalk.chatManager.openedChatUser.writing)
+                        chatInput.sendMessage()
                 }
             }
         }

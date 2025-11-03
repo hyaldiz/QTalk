@@ -24,7 +24,7 @@ Item {
             anchors.fill: parent
             anchors.margins: 12
             wrapMode: Label.Wrap
-            color: "#ffffff"
+            color: QTalk.palette.Text
             text: contents
             opacity: 0.75
             font.pixelSize: 15

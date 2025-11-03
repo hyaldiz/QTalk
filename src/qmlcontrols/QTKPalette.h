@@ -93,7 +93,7 @@ public:
     void setColorGroupEnabled(bool enabled);
     static void setGlobalTheme(Theme newTheme);
 
-    DEFINE_QTK_COLOR(FigmaComponentBase,setFigmaComponentBase)
+    DEFINE_QTK_COLOR(Text,setText)
 
 signals:
     void paletteChanged();

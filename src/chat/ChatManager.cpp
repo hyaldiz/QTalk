@@ -80,10 +80,10 @@ void ChatManager::onAsk(const QString &message)
         return;
     }
 
-    // if(m_lastMessage) {
-    //     qInfo() << "On going response exist";
-    //     return;
-    // }
+    if(m_lastMessage) {
+        qInfo() << "On going response exist";
+        return;
+    }
 
     m_openedChatUser->setWriting(true);
     m_chatEngine->send(message);

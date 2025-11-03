@@ -1,9 +1,11 @@
 #include <QTalkQmlGlobal.h>
 
+#include "QTKPalette.h"
 #include "ChatManager.h"
 
 QTalkQmlGlobal::QTalkQmlGlobal(QObject *parent)
     : QObject(parent)
+    , m_palette(new QTKPalette(this))
     , m_chatManager(ChatManager::instance())
 {
 

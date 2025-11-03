@@ -27,7 +27,7 @@ QTKPalette::~QTKPalette()
 
 void QTKPalette::buildMap()
 {
-    DECLARE_QTK_COLOR(FigmaComponentBase,"#242423","#242423","#242423","#242423")
+    DECLARE_QTK_COLOR(Text,"#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF")
 }
 
 void QTKPalette::setColorGroupEnabled(bool enabled)

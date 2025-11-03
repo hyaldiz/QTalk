@@ -3,8 +3,10 @@
 #include <QObject>
 #include <QtQmlIntegration/QtQmlIntegration>
 
+class QTKPalette;
 class ChatManager;
 
+Q_MOC_INCLUDE("QTKPalette.h")
 Q_MOC_INCLUDE("ChatManager.h")
 
 class QTalkQmlGlobal : public QObject
@@ -20,6 +22,7 @@ class QTalkQmlGlobal : public QObject
     Q_PROPERTY(qreal zOrderWidgets READ zOrderWidgets CONSTANT)
     Q_PROPERTY(qreal zOrderHighlights READ zOrderHighlights CONSTANT)
 
+    Q_PROPERTY(QTKPalette* palette READ palette CONSTANT)
     Q_PROPERTY(ChatManager* chatManager READ chatManager CONSTANT)
 public:
     explicit QTalkQmlGlobal(QObject* parent = nullptr);
@@ -32,8 +35,10 @@ public:
     qreal zOrderWidgets() const { return 100; }
     qreal zOrderHighlights() const { return 3; }
 
+    QTKPalette* palette() const { return m_palette; }
     ChatManager* chatManager() const { return m_chatManager; }
 
 private:
+    QTKPalette* m_palette;
     ChatManager* m_chatManager;
 };
