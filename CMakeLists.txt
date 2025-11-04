@@ -71,6 +71,7 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
     IMPORTS
         QtQuick
         QtQuick.Controls
+        QtQuick.Window
 )
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/libs/llama.cpp)

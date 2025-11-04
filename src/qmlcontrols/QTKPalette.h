@@ -93,13 +93,14 @@ public:
     void setColorGroupEnabled(bool enabled);
     static void setGlobalTheme(Theme newTheme);
 
+    DEFINE_QTK_COLOR(QTalkBrand, setQTalkBrand)
     DEFINE_QTK_COLOR(AppBackground, setAppBackground)
     DEFINE_QTK_COLOR(Text, setText)
-    DEFINE_QTK_COLOR(TextSolarized,setTextSolarized)
-    DEFINE_QTK_COLOR(ControlsBackground,setControlsBackground)
-    DEFINE_QTK_COLOR(BubleMainUser,setBubleMainUser)
-    DEFINE_QTK_COLOR(BubleQTalk,setBubleQTalk)
-    DEFINE_QTK_COLOR(BubleFailed,setBubleFailed)
+    DEFINE_QTK_COLOR(TextSolarized, setTextSolarized)
+    DEFINE_QTK_COLOR(ControlsBackground, setControlsBackground)
+    DEFINE_QTK_COLOR(BubleMainUser, setBubleMainUser)
+    DEFINE_QTK_COLOR(BubleQTalk, setBubleQTalk)
+    DEFINE_QTK_COLOR(BubleFailed, setBubleFailed)
 
 signals:
     void paletteChanged();

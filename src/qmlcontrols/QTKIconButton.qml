@@ -6,13 +6,15 @@ Rectangle {
     id: control
 
     property alias icon: icon
+    property color bgColor: QTalk.palette.ControlsBackground
+    property color hoverColor: QTalk.palette.ControlsBackground
 
     signal clicked
 
     width: 60
     height: 60
 
-    color: QTalk.palette.ControlsBackground
+    color: mouseArea.containsMouse ? hoverColor : bgColor
     radius: 100
     opacity: mouseArea.containsMouse ? 0.8 : 1
 
