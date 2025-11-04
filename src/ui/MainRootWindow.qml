@@ -11,9 +11,7 @@ ApplicationWindow {
     width: 800
     height: 480
 
-    flags: Qt.FramelessWindowHint
-
-
+    //flags: Qt.FramelessWindowHint
     color: QTalk.palette.AppBackground
 
     // ColumnLayout {

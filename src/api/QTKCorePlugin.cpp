@@ -34,6 +34,13 @@ void QTKCorePlugin::createMainRootWindow(QQmlApplicationEngine* qmlEngine)
     qmlEngine->load(QUrl(QStringLiteral("qrc:/qml/QTalk/MainRootWindow.qml")));
 }
 
+QString QTKCorePlugin::supportedLLMExtensions() const
+{
+    QStringList extensions;
+    extensions << "(*.gguf)";
+    return extensions.join(',');
+}
+
 const QVariantList& QTKCorePlugin::appPages()
 {
     static const QVariantList appList = {

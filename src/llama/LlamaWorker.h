@@ -18,7 +18,7 @@ public:
     ~LlamaWorker() override;
 
 public slots:
-    void loadModel(const QString& path, int nCtx, int nGpuLayers);
+    void loadModel(const QUrl& path, int nCtx, int nGpuLayers);
     void ask(const QString& userText);
     void stop();
     void unload();

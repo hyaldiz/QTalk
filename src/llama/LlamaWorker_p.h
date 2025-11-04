@@ -36,5 +36,5 @@ public:
 
     int nCtx;
     int nGpuLayers;
-    QString modelPath;
+    QUrl modelPath;
 };

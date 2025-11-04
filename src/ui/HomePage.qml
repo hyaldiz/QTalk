@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls // StackView'i kullanmak için bu import gerekli
 import QtQuick.Dialogs
 
 import QTalk
@@ -42,15 +42,16 @@ Item {
             FileDialog {
                 id: fileDialog
                 title: hintStr
-
-                nameFilters: ["(*.gguf)"]
+                nameFilters: QTalk.corePlugin.supportedLLMExtensions
 
                 onAccepted: {
                     root.modelFile = fileDialog.selectedFile
-                    mainLoader.sourceComponent = checkSelectedModelComponent
+
+                    homeStackView.replace(checkSelectedModelComponent)
                 }
 
                 onRejected: {
+
                 }
             }
         }
@@ -59,6 +60,8 @@ Item {
     Component {
         id: checkSelectedModelComponent
         Item {
+            anchors.fill: parent
+
             QTKBusyIndicator {
                 anchors.centerIn: parent
                 size: 96
@@ -67,35 +70,26 @@ Item {
 
             Connections {
                 target: QTalk.chatManager.chatEngine
+
                 function onReadyChanged(ready) {
                     if(ready) {
-                        //push to chat
-                        return
                     }
                 }
-            }
 
-            Connections {
-                target: QTalk.chatManager.chatEngine
                 function onError(message) {
-                    mainLoader.sourceComponent = selectFileComponent
+                    homeStackView.replace(selectFileComponent)
                 }
             }
 
             Component.onCompleted: {
-                console.log("Model file: " + root.modelFile)
-
                 QTalk.chatManager.chatEngine.load(root.modelFile)
             }
         }
     }
 
-    Loader {
-        id: mainLoader
-        anchors.fill: parent
-    }
+    QTKStackView {
+        id: homeStackView
 
-    Component.onCompleted: {
-        mainLoader.sourceComponent = selectFileComponent
+        initialItem: selectFileComponent
     }
 }

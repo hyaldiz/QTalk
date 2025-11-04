@@ -25,5 +25,6 @@ qt_add_qml_module(QTalkControlsModule
     QTKIconButton.qml
     QTKIcon.qml
     QTKBusyIndicator.qml
+    QTKStackView.qml
     ScreenTools.qml
 )

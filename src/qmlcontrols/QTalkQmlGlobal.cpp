@@ -1,10 +1,12 @@
 #include <QTalkQmlGlobal.h>
 
+#include "QTKCorePlugin.h"
 #include "QTKPalette.h"
 #include "ChatManager.h"
 
 QTalkQmlGlobal::QTalkQmlGlobal(QObject *parent)
     : QObject(parent)
+    , m_corePlugin(QTKCorePlugin::instance())
     , m_palette(new QTKPalette(this))
     , m_chatManager(ChatManager::instance())
 {

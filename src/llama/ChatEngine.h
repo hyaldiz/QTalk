@@ -18,7 +18,7 @@ public:
 
     ~ChatEngine();
 
-    Q_INVOKABLE void load(const QString& path, int nCtx = 2048, int nGpuLayers = 99);
+    Q_INVOKABLE void load(const QUrl& path, int nCtx = 2048, int nGpuLayers = 99);
     Q_INVOKABLE void send(const QString& text);
     Q_INVOKABLE void stop();
     Q_INVOKABLE void unload();

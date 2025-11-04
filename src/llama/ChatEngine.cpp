@@ -43,11 +43,11 @@ ChatEngine::~ChatEngine() {
     m_thread.wait();
 }
 
-void ChatEngine::load(const QString& modelPath, int nCtx, int nGpuLayers) {
+void ChatEngine::load(const QUrl& modelPath, int nCtx, int nGpuLayers) {
     m_ready = false;
     emit readyChanged(m_ready);
     QMetaObject::invokeMethod(m_worker, "loadModel", Qt::QueuedConnection,
-                              Q_ARG(QString, modelPath), Q_ARG(int, nCtx), Q_ARG(int, nGpuLayers));
+                              Q_ARG(QUrl, modelPath), Q_ARG(int, nCtx), Q_ARG(int, nGpuLayers));
 }
 
 void ChatEngine::send(const QString& text) {

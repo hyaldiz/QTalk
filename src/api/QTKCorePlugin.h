@@ -2,13 +2,16 @@
 
 #include <QObject>
 #include <QVariant>
+#include <QtQmlIntegration/QtQmlIntegration>
 
 class QQmlApplicationEngine;
 
 class QTKCorePlugin : public QObject
 {
     Q_OBJECT
+    QML_UNCREATABLE("")
     Q_PROPERTY(QVariantList appPages READ appPages CONSTANT)
+    Q_PROPERTY(QString supportedLLMExtensions READ supportedLLMExtensions CONSTANT)
 public:
     explicit QTKCorePlugin(QObject* parent = nullptr);
     ~QTKCorePlugin();
@@ -20,4 +23,6 @@ public:
     virtual QQmlApplicationEngine* createQmlApplicationEngine(QObject* parent);
 
     virtual void createMainRootWindow(QQmlApplicationEngine* qmlEngine);
+
+    QString supportedLLMExtensions() const;
 };

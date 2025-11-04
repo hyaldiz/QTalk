@@ -27,7 +27,7 @@ void LlamaWorker::unload()
     d->unloadAll();
 }
 
-void LlamaWorker::loadModel(const QString &path, int nCtx, int nGpuLayers)
+void LlamaWorker::loadModel(const QUrl &path, int nCtx, int nGpuLayers)
 {
     d->unloadAll();
     d->cancel = false;
@@ -60,7 +60,7 @@ void LlamaWorker::loadModel(const QString &path, int nCtx, int nGpuLayers)
     llama_model_params mp = llama_model_default_params();
     mp.n_gpu_layers = d->nGpuLayers;
 
-    d->model = llama_model_load_from_file(path.toStdString().c_str(), mp);
+    d->model = llama_model_load_from_file(path.toLocalFile().toStdString().c_str(), mp);
     if(!d->model) {
         emit modelLoadFailed("Context not created");
         d->unloadAll();
