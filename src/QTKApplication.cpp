@@ -25,8 +25,6 @@ void QTKApplication::init()
     QObject::connect(d->m_qmlEngine,&QQmlApplicationEngine::objectCreationFailed,this,&QCoreApplication::quit,Qt::QueuedConnection);
 
     QTKCorePlugin::instance()->createMainRootWindow(d->m_qmlEngine);
-
-    qInfo(QTKApplicationLog) << "Application initiated successfully.";
 }
 
 QObject* QTKApplication::rootQmlObject()

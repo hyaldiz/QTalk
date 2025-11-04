@@ -15,7 +15,7 @@ Item {
         Item {
             anchors.fill: parent
 
-            readonly property string hintStr: qsTr("Please select LLM file")
+            readonly property string hintStr: qsTr("Select an LLM model file to continue.")
 
             QTKIconButton {
                 id: selectFileButton
