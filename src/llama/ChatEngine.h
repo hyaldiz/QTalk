@@ -11,6 +11,8 @@ class ChatEngine : public QObject
     Q_OBJECT
     QML_ELEMENT
     QML_UNCREATABLE("")
+
+    Q_PROPERTY(bool ready READ isModelReady NOTIFY readyChanged)
 public:
     explicit ChatEngine(QObject* parent = nullptr);
 

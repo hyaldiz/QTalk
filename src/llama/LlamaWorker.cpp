@@ -50,7 +50,7 @@ void LlamaWorker::loadModel(const QString &path, int nCtx, int nGpuLayers)
             qWarning(LlamaLog) << text;
             break;
         case GGML_LOG_LEVEL_ERROR:
-            qFatal(LlamaLog) << text;
+            qCritical(LlamaLog) << text;
             break;
         }
     }, nullptr);
