@@ -31,6 +31,9 @@ void QTKPalette::buildMap()
     DECLARE_QTK_COLOR(Text,"#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF")
     DECLARE_QTK_COLOR(TextSolarized,"#d0d0d0","#d0d0d0","#d0d0d0","#d0d0d0")
     DECLARE_QTK_COLOR(ControlsBackground,"#404040","#404040","#404040","#404040")
+    DECLARE_QTK_COLOR(BubleMainUser,"#FFA657","#FFA657","#FFA657","#FFA657")
+    DECLARE_QTK_COLOR(BubleQTalk,"#57a6ff","#57a6ff","#57a6ff","#57a6ff")
+    DECLARE_QTK_COLOR(BubleFailed,"#FF0000","#FF0000","#FF0000","#FF0000")
 }
 
 void QTKPalette::setColorGroupEnabled(bool enabled)

@@ -5,6 +5,7 @@ qt_add_qml_module(QTalkUIModule
     VERSION 1.0
     RESOURCE_PREFIX /qml
     QML_FILES
-    HomePage.qml
     SplashScreen.qml
+    HomePage.qml
+    ChatPage.qml
 )

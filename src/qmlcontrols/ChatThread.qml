@@ -4,7 +4,7 @@ import QtQuick.Controls
 import QTalk
 import QTalk.Controls
 
-Rectangle {
+Item {
     id: chatThread
 
     ListView {
@@ -14,6 +14,7 @@ Rectangle {
 
         spacing: 8
         clip: true
+        boundsBehavior: Flickable.StopAtBounds
         highlightFollowsCurrentItem: true
         model: QTalk.chatManager.openedChatUser.messages
 
@@ -22,9 +23,5 @@ Rectangle {
         }
 
         delegate: ChatBubble {}
-
-        add: Transition{
-            NumberAnimation{ properties: "x"; from: openedChatList.width/2; duration: 1500; easing.type: Easing.OutBounce; }
-        }
     }
 }

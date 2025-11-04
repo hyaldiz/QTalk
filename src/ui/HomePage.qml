@@ -7,7 +7,6 @@ import QTalk.Controls
 
 Item {
     id: root
-    anchors.fill: parent
 
     property url modelFile: ""
 
@@ -21,7 +20,7 @@ Item {
             QTKIconButton {
                 id: selectFileButton
                 anchors.centerIn: parent
-                width: 48; height: 48
+                width: 96; height: 96
                 icon.path: ScreenTools.iconSelectFile
                 onClicked: {
                     fileDialog.open()
@@ -47,7 +46,7 @@ Item {
                 onAccepted: {
                     root.modelFile = fileDialog.selectedFile
 
-                    homeStackView.replace(checkSelectedModelComponent)
+                    loader.sourceComponent = checkSelectedModelComponent
                 }
 
                 onRejected: {
@@ -73,11 +72,12 @@ Item {
 
                 function onReadyChanged(ready) {
                     if(ready) {
+                        mainLoader.source = "qrc:/qml/QTalk/UI/ChatPage.qml"
                     }
                 }
 
                 function onError(message) {
-                    homeStackView.replace(selectFileComponent)
+                    loader.sourceComponent = selectFileComponent
                 }
             }
 
@@ -87,9 +87,11 @@ Item {
         }
     }
 
-    QTKStackView {
-        id: homeStackView
+    Loader {
+        id: loader
 
-        initialItem: selectFileComponent
+        anchors.fill: parent
+
+        sourceComponent: selectFileComponent
     }
 }

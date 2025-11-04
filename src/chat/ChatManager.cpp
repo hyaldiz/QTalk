@@ -96,7 +96,7 @@ void ChatManager::onTokenArrived(const QString &piece)
         return;
     }
 
-    m_lastMessage = new Message(piece, m_openedChatUser->ID());
+    m_lastMessage = new Message(piece, m_openedChatUser->ID(),m_openedChatUser);
     m_openedChatUser->addMessage(m_lastMessage);
 }
 

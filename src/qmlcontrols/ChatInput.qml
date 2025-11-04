@@ -8,7 +8,7 @@ Rectangle {
     height: 55
     width: parent.width * 0.9
     radius: 10
-    color: "#303030"
+    color: QTalk.palette.ControlsBackground
 
     function clamp(v, a, b) { return Math.max(a, Math.min(b, v)) }
 

@@ -17,19 +17,24 @@ Item {
         height: messageText.implicitHeight + 24
         x: chatBubble.sender ? 0 : chatBubble.width - width
         radius: 12
-        color: failed ? "red" : chatBubble.sender ? "gray" : "green"
+        color: failed ? QTalk.palette.BubleFailed
+                      : chatBubble.sender ? QTalk.palette.BubleMainUser : QTalk.palette.BubleQTalk
 
-        Text {
+        TextEdit {
             id: messageText
             anchors.fill: parent
             anchors.margins: 12
-            wrapMode: Label.Wrap
+
+            readOnly: true
+            selectByMouse: true
+
+            wrapMode: TextEdit.Wrap
+
             color: QTalk.palette.Text
             text: contents
-            opacity: 0.75
             font.pixelSize: 15
             verticalAlignment: Qt.AlignVCenter
-            horizontalAlignment: chatBubble.sender ? Qt.AlignRight : Qt.AlignLeft
+            horizontalAlignment: Qt.AlignLeft
         }
     }
 }
