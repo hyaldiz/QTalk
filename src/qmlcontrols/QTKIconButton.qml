@@ -1,5 +1,7 @@
 import QtQuick
 
+import QTalk
+
 Rectangle {
     id: control
 
@@ -10,7 +12,7 @@ Rectangle {
     width: 60
     height: 60
 
-    color: "#363636"
+    color: QTalk.palette.ControlsBackground
     radius: 100
     opacity: mouseArea.containsMouse ? 0.8 : 1
 

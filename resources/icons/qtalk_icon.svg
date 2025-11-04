@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 100 100" role="img" aria-label="QTalk icon">
+  <defs>
+    <linearGradient id="qtalkGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#57a6ff"/>
+      <stop offset="100%" stop-color="#2b82ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Konuşma balonu şekli -->
+  <path d="M72 12H28C19 12 12 19 12 28V64C12 73 19 80 28 80H48L60 92V80H72C81 80 88 73 88 64V28C88 19 81 12 72 12Z"
+        fill="url(#qtalkGradient)"/>
+
+  <!-- Q harfi -->
+  <circle cx="50" cy="46" r="18" fill="white"/>
+  <rect x="58" y="56" width="8" height="10" rx="2" transform="rotate(40 62 61)" fill="white"/>
+</svg>

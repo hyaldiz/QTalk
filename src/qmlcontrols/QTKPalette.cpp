@@ -27,7 +27,10 @@ QTKPalette::~QTKPalette()
 
 void QTKPalette::buildMap()
 {
+    DECLARE_QTK_COLOR(AppBackground, "#FFFFFF","#FFFFFF","#303030","#303030")
     DECLARE_QTK_COLOR(Text,"#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF")
+    DECLARE_QTK_COLOR(TextSolarized,"#d0d0d0","#d0d0d0","#d0d0d0","#d0d0d0")
+    DECLARE_QTK_COLOR(ControlsBackground,"#404040","#404040","#404040","#404040")
 }
 
 void QTKPalette::setColorGroupEnabled(bool enabled)

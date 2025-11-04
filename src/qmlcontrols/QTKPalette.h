@@ -93,7 +93,10 @@ public:
     void setColorGroupEnabled(bool enabled);
     static void setGlobalTheme(Theme newTheme);
 
-    DEFINE_QTK_COLOR(Text,setText)
+    DEFINE_QTK_COLOR(AppBackground, setAppBackground)
+    DEFINE_QTK_COLOR(Text, setText)
+    DEFINE_QTK_COLOR(TextSolarized,setTextSolarized)
+    DEFINE_QTK_COLOR(ControlsBackground,setControlsBackground)
 
 signals:
     void paletteChanged();

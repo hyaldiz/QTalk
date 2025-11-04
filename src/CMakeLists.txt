@@ -23,6 +23,7 @@ qt_policy(SET QTP0004 NEW)
 
 add_subdirectory(llama)
 add_subdirectory(api)
+add_subdirectory(ui)
 add_subdirectory(qmlcontrols)
 add_subdirectory(chat)
 
@@ -57,6 +58,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         #QTK Modules
         QTalkModule
         QTalkControlsModule
+        QTalkUIModule
 )
 
 set_target_properties(${CMAKE_PROJECT_NAME}

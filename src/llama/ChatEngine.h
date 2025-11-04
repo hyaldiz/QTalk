@@ -2,12 +2,15 @@
 
 #include <QObject>
 #include <QThread>
+#include <QtQmlIntegration/QtQmlIntegration>
 
 class LlamaWorker;
 
 class ChatEngine : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
+    QML_UNCREATABLE("")
 public:
     explicit ChatEngine(QObject* parent = nullptr);
 

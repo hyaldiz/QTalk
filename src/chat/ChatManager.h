@@ -7,6 +7,8 @@
 
 class ChatEngine;
 
+Q_MOC_INCLUDE("ChatEngine.h")
+
 class ChatManager : public QObject
 {
     Q_OBJECT
@@ -15,7 +17,7 @@ class ChatManager : public QObject
 
     Q_PROPERTY(User* openedChatUser READ openedChatUser WRITE setOpenedChatUser NOTIFY openedChatUserChanged)
     Q_PROPERTY(User* mainUser READ mainUser CONSTANT)
-
+    Q_PROPERTY(ChatEngine* chatEngine READ chatEngine CONSTANT)
 public:
     explicit ChatManager(QObject* parent = nullptr);
 
@@ -29,6 +31,8 @@ public:
     User* mainUser() const;
 
     UserProxyList* userProxyList() const;
+
+    ChatEngine* chatEngine() const;
 
 signals:
     void openedChatUserChanged();

@@ -24,6 +24,6 @@ qt_add_qml_module(QTalkControlsModule
     ChatInput.qml
     QTKIconButton.qml
     QTKIcon.qml
-    HomePage.qml
+    QTKBusyIndicator.qml
     ScreenTools.qml
 )

@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix ="icons">
+        <file alias="qtalk_icon.svg">resources/icons/qtalk_icon.svg</file>
         <file alias="send.png">resources/icons/send.png</file>
-        <file alias="stop.png">resources/icons/stop.png</file>
+        <file alias="stop.png">resources/icons/stop.png</file>    
+        <file alias="select_file_icon.svg">resources/icons/select_file_icon.svg</file>
     </qresource>
 </RCC>

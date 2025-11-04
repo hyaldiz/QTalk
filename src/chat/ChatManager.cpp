@@ -25,15 +25,15 @@ ChatManager::ChatManager(QObject *parent)
     m_userProxyList->setSourceModel(m_userList);
 
     //Test section
-    m_chatEngine->load("/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf");
+    //m_chatEngine->load("/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf");
 
-    QTimer* tmr = new QTimer(this);
+    // QTimer* tmr = new QTimer(this);
 
-    tmr->setInterval(15000);
+    // tmr->setInterval(15000);
 
-    connect(tmr, &QTimer::timeout, this, [this](){
-        emit m_chatEngine->error("");
-    });
+    // connect(tmr, &QTimer::timeout, this, [this](){
+    //     emit m_chatEngine->error("");
+    // });
 
     //tmr->start();
 }
@@ -126,4 +126,9 @@ void ChatManager::stop()
 UserProxyList *ChatManager::userProxyList() const
 {
     return m_userProxyList;
+}
+
+ChatEngine *ChatManager::chatEngine() const
+{
+    return m_chatEngine;
 }
