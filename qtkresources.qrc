@@ -3,6 +3,10 @@
         <file alias="qtalk_icon.svg">resources/icons/qtalk_icon.svg</file>
         <file alias="send.png">resources/icons/send.png</file>
         <file alias="stop.png">resources/icons/stop.png</file>    
+        <file alias="quit.png">resources/icons/quit.png</file>
+        <file alias="window-minimize.png">resources/icons/window-minimize.png</file>
+        <file alias="window-maximize.png">resources/icons/window-maximize.png</file>
+        <file alias="communication.png">resources/icons/communication.png</file>
         <file alias="select_file_icon.svg">resources/icons/select_file_icon.svg</file>
     </qresource>
 </RCC>

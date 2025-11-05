@@ -3,6 +3,8 @@
 #include "QTKCorePlugin.h"
 #include "QTKLoggingCategory.h"
 
+#include <QQmlApplicationEngine>
+
 QTK_LOGGING_CATEGORY(QTKApplicationLog,"QTKApplicationLog")
 
 QTKApplication::QTKApplication(int argc, char** argv)
@@ -22,7 +24,7 @@ void QTKApplication::init()
 {
     d->m_qmlEngine = QTKCorePlugin::instance()->createQmlApplicationEngine(this);
 
-    QObject::connect(d->m_qmlEngine,&QQmlApplicationEngine::objectCreationFailed,this,&QCoreApplication::quit,Qt::QueuedConnection);
+    connect(d->m_qmlEngine,&QQmlApplicationEngine::objectCreationFailed,this,&QCoreApplication::quit,Qt::QueuedConnection);
 
     QTKCorePlugin::instance()->createMainRootWindow(d->m_qmlEngine);
 }
@@ -30,7 +32,7 @@ void QTKApplication::init()
 QObject* QTKApplication::rootQmlObject()
 {
     if(d->m_qmlEngine && d->m_qmlEngine->rootObjects().size()) {
-        return d->m_qmlEngine->rootObjects().first();
+        return d->m_qmlEngine->rootObjects().at(0);
     }
 
     return nullptr;

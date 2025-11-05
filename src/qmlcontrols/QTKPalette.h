@@ -97,6 +97,7 @@ public:
     DEFINE_QTK_COLOR(AppBackground, setAppBackground)
     DEFINE_QTK_COLOR(Text, setText)
     DEFINE_QTK_COLOR(TextSolarized, setTextSolarized)
+    DEFINE_QTK_COLOR(Critical,setCritical)
     DEFINE_QTK_COLOR(ControlsBackground, setControlsBackground)
     DEFINE_QTK_COLOR(BubleMainUser, setBubleMainUser)
     DEFINE_QTK_COLOR(BubleQTalk, setBubleQTalk)

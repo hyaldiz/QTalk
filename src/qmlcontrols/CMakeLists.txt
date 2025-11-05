@@ -26,5 +26,7 @@ qt_add_qml_module(QTalkControlsModule
     QTKIcon.qml
     QTKBusyIndicator.qml
     QTKStackView.qml
+    MainWindowResizer.qml
+    MainRootWindowHeader.qml
     ScreenTools.qml
 )

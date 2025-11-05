@@ -95,6 +95,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 8
         icon.path: QTalk.chatManager.openedChatUser.writing ? ScreenTools.iconStop : ScreenTools.iconSend
+
         onClicked: {
             if(QTalk.chatManager.openedChatUser.writing) {
                 QTalk.chatManager.stop()
@@ -102,6 +103,21 @@ Rectangle {
             }
 
             chatInput.sendMessage()
+        }
+
+        SequentialAnimation {
+            id: blinkAnimation
+            loops: Animation.Infinite
+            running: QTalk.chatManager.openedChatUser.writing
+
+            onRunningChanged: {
+                if (!running) {
+                    sendButton.opacity = 1.0
+                }
+            }
+
+            PropertyAnimation { target: sendButton; property: "opacity"; to: 0.2; duration: 750 }
+            PropertyAnimation { target: sendButton; property: "opacity"; to: 1.0; duration: 750 }
         }
     }
 

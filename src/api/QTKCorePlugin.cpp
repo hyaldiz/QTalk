@@ -2,7 +2,6 @@
 #include "QmlComponentInfo.h"
 
 #include <QApplicationStatic>
-#include <QQmlApplicationEngine>
 
 Q_APPLICATION_STATIC(QTKCorePlugin, _qtkCorePluginInstance)
 
@@ -24,8 +23,10 @@ QTKCorePlugin* QTKCorePlugin::instance()
 
 QQmlApplicationEngine* QTKCorePlugin::createQmlApplicationEngine(QObject* parent)
 {
-    QQmlApplicationEngine* const qmlEngine = new QQmlApplicationEngine(parent);
+    auto qmlEngine = new QQmlApplicationEngine(parent);
+
     qmlEngine->addImportPath("qrc:/qml");
+
     return qmlEngine;
 }
 
@@ -43,15 +44,18 @@ QString QTKCorePlugin::supportedLLMExtensions() const
 
 const QVariantList& QTKCorePlugin::appPages()
 {
-    static const QVariantList appList = {
-        QVariant::fromValue(
-            new QmlComponentInfo(
-                tr("Example page 1"),
-                QUrl::fromUserInput(QStringLiteral()),
-                QUrl::fromUserInput(QStringLiteral())
-            )
-        )
-    };
+    static QVariantList appList;
+
+    if(appList.isEmpty())
+    {
+        appList.append(QVariant::fromValue(
+                new QmlComponentInfo(
+                    tr("Example page 1"),
+                    QUrl::fromUserInput(QStringLiteral()),
+                    QUrl::fromUserInput(QStringLiteral())
+                )
+            ));
+    }
 
     return appList;
 }

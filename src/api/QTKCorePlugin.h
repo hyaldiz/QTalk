@@ -3,8 +3,7 @@
 #include <QObject>
 #include <QVariant>
 #include <QtQmlIntegration/QtQmlIntegration>
-
-class QQmlApplicationEngine;
+#include <QQmlApplicationEngine>
 
 class QTKCorePlugin : public QObject
 {
