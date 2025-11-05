@@ -16,6 +16,11 @@ tmp/
 *.dylib
 *.exe
 
+#IDE and User settings
+*.user
+*.user.*
+.qmlls.ini
+
 # Qt Creator user-specific files
 *.pro.user*
 *.qbs.user
