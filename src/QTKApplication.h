@@ -28,7 +28,7 @@ class QTKApplication : public QApplication
 
     friend class QTKApplicationPrivate;
 public:
-    QTKApplication(int argc, char** argv);
+    QTKApplication(int& argc, char** argv);
     ~QTKApplication();
 
     void init();

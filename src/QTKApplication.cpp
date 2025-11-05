@@ -7,7 +7,7 @@
 
 QTK_LOGGING_CATEGORY(QTKApplicationLog,"QTKApplicationLog")
 
-QTKApplication::QTKApplication(int argc, char** argv)
+QTKApplication::QTKApplication(int& argc, char** argv)
     : QApplication(argc,argv)
     , d(new QTKApplicationPrivate)
 {
