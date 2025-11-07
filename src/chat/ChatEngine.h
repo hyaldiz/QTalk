@@ -4,7 +4,7 @@
 #include <QThread>
 #include <QtQmlIntegration/QtQmlIntegration>
 
-class LlamaWorker;
+class AbstractLLMEngine;
 
 class ChatEngine : public QObject
 {
@@ -14,7 +14,7 @@ class ChatEngine : public QObject
 
     Q_PROPERTY(bool ready READ isModelReady NOTIFY readyChanged)
 public:
-    explicit ChatEngine(QObject* parent = nullptr);
+    explicit ChatEngine(AbstractLLMEngine* llmEngine, QObject* parent = nullptr);
 
     ~ChatEngine();
 
@@ -34,6 +34,6 @@ signals:
 
 private:
     QThread m_thread;
-    LlamaWorker* m_worker = nullptr;
+    AbstractLLMEngine* m_worker = nullptr;
     bool m_ready = false;
 };

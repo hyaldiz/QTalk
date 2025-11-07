@@ -1,6 +1,7 @@
 #include "ChatManager.h"
 #include "Message.h"
 #include "ChatEngine.h"
+#include "LlamaEngine.h"
 
 #include <QApplicationStatic>
 
@@ -12,7 +13,7 @@ ChatManager::ChatManager(QObject *parent)
     , m_userProxyList(new UserProxyList(this))
     , m_mainUser(new User(0, "MeAndYou", this))
     , m_openedChatUser(new User(1,"LLMModel", this))
-    , m_chatEngine(new ChatEngine(this))
+    , m_chatEngine(new ChatEngine(new LlamaEngine(this), this))
     , m_lastMessage(nullptr)
 {
     connect(this, &ChatManager::sendMessage, this, &ChatManager::onSendMessage, Qt::QueuedConnection);
@@ -23,19 +24,6 @@ ChatManager::ChatManager(QObject *parent)
     connect(m_chatEngine, &ChatEngine::error, this, &ChatManager::onError);
 
     m_userProxyList->setSourceModel(m_userList);
-
-    //Test section
-    //m_chatEngine->load("/home/umbrella/Desktop/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf");
-
-    // QTimer* tmr = new QTimer(this);
-
-    // tmr->setInterval(15000);
-
-    // connect(tmr, &QTimer::timeout, this, [this](){
-    //     emit m_chatEngine->error("");
-    // });
-
-    //tmr->start();
 }
 
 ChatManager *ChatManager::instance()

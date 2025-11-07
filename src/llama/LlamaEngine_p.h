@@ -9,19 +9,19 @@
 
 #include "llama.h"
 
-class LlamaWorker;
+class LlamaEngine;
 
-class LlamaWorkerPrivate
+class LlamaEnginePrivate
 {
 public:
-    explicit LlamaWorkerPrivate(LlamaWorker* qptr);
+    explicit LlamaEnginePrivate(LlamaEngine* qptr);
 
     void unloadAll();
     void ensureSampler();
     std::string buildPromptFromChat(const std::string& user);
     void clearMessages();
 
-    LlamaWorker* const q;
+    LlamaEngine* const q;
 
     llama_model* model;
     llama_context* ctx;

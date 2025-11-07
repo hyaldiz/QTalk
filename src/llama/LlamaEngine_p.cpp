@@ -1,6 +1,7 @@
-#include "LlamaWorker_p.h"
+#include "LlamaEngine_p.h"
+#include "LlamaEngine.h"
 
-LlamaWorkerPrivate::LlamaWorkerPrivate(LlamaWorker* qptr)
+LlamaEnginePrivate::LlamaEnginePrivate(LlamaEngine* qptr)
     : q(qptr)
     , model(nullptr)
     , ctx(nullptr)
@@ -13,7 +14,7 @@ LlamaWorkerPrivate::LlamaWorkerPrivate(LlamaWorker* qptr)
 
 }
 
-void LlamaWorkerPrivate::ensureSampler()
+void LlamaEnginePrivate::ensureSampler()
 {
     if(smpl)
         return;
@@ -26,7 +27,7 @@ void LlamaWorkerPrivate::ensureSampler()
     smpl = chain;
 }
 
-std::string LlamaWorkerPrivate::buildPromptFromChat(const std::string &user)
+std::string LlamaEnginePrivate::buildPromptFromChat(const std::string &user)
 {
     if(!model)
         throw std::runtime_error("Model not exist");
@@ -82,7 +83,7 @@ std::string LlamaWorkerPrivate::buildPromptFromChat(const std::string &user)
     return prompt;
 }
 
-void LlamaWorkerPrivate::clearMessages()
+void LlamaEnginePrivate::clearMessages()
 {
     for(auto& msg : messages) {
         if(msg.content)
@@ -93,7 +94,7 @@ void LlamaWorkerPrivate::clearMessages()
     formatted.clear();
 }
 
-void LlamaWorkerPrivate::unloadAll()
+void LlamaEnginePrivate::unloadAll()
 {
     if(smpl) {
         llama_sampler_free(smpl);

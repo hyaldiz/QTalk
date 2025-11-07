@@ -25,6 +25,10 @@ include(Toolchain)
 include(CustomOptions)
 include(Git)
 
+if(NOT QTK_BUILD_TESTING)
+    set(BUILD_TESTING OFF CACHE INTERNAL "Default testing by default" FORCE)
+endif()
+
 project(${QTK_APP_NAME}
     VERSION ${QTK_APP_VERSION}
     DESCRIPTION ${QTK_APP_DESCRIPTION}
@@ -33,16 +37,18 @@ project(${QTK_APP_NAME}
 
 find_package(Qt6
     REQUIRED
-    COMPONENTS
-    Core
-    Gui
-    Widgets
-    Concurrent
-    Qml
-    QmlIntegration
-    QuickControls2
-    QuickWidgets
-    Quick
+        COMPONENTS
+        Core
+        Gui
+        Widgets
+        Concurrent
+        Qml
+        QmlIntegration
+        QuickControls2
+        QuickWidgets
+        Quick
+    OPTIONAL_COMPONENTS
+        Test
 )
 
 # ----------------------------------------------------------------------------
@@ -76,3 +82,8 @@ qt_add_qml_module(${CMAKE_PROJECT_NAME}
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/libs/llama.cpp)
 add_subdirectory(src)
+
+if(QTK_BUILD_TESTING)
+    add_subdirectory(test)
+    set_property(DIRECTORY test PROPERTY QT_EXCLUDE_FROM_TRANSLATION ON)
+endif()

@@ -1,5 +1,5 @@
-#include "LlamaWorker.h"
-#include "LlamaWorker_p.h"
+#include "LlamaEngine.h"
+#include "LlamaEngine_p.h"
 #include "QTKLoggingCategory.h"
 
 #include <QThread>
@@ -9,25 +9,25 @@
 
 QTK_LOGGING_CATEGORY(LlamaLog,"LlamaLog")
 
-LlamaWorker::LlamaWorker(QObject *parent)
-    : QObject(parent)
-    , d(new LlamaWorkerPrivate(this))
+LlamaEngine::LlamaEngine(QObject *parent)
+    : AbstractLLMEngine(parent)
+    , d(new LlamaEnginePrivate(this))
 {
 
 }
 
-LlamaWorker::~LlamaWorker()
+LlamaEngine::~LlamaEngine()
 {
     d->cancel.store(true, std::memory_order_relaxed);
     d->unloadAll();
 }
 
-void LlamaWorker::unload()
+void LlamaEngine::unload()
 {
     d->unloadAll();
 }
 
-void LlamaWorker::loadModel(const QUrl &path, int nCtx, int nGpuLayers)
+void LlamaEngine::loadModel(const QUrl &path, int nCtx, int nGpuLayers)
 {
     d->unloadAll();
     d->cancel = false;
@@ -86,7 +86,7 @@ void LlamaWorker::loadModel(const QUrl &path, int nCtx, int nGpuLayers)
     emit modelLoaded();
 }
 
-void LlamaWorker::ask(const QString &userText)
+void LlamaEngine::ask(const QString &userText)
 {
     if (!d->ctx || !d->model) {
         emit error("Model not loaded");
@@ -167,7 +167,7 @@ void LlamaWorker::ask(const QString &userText)
     }
 }
 
-void LlamaWorker::stop()
+void LlamaEngine::stop()
 {
     d->cancel.store(true, std::memory_order_relaxed);
 }

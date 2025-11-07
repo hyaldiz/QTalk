@@ -1,32 +1,33 @@
 #include "ChatEngine.h"
-#include "LlamaWorker.h"
+#include "AbstractLLMEngine.h"
 
 #include <QMetaObject>
 
-ChatEngine::ChatEngine(QObject* parent)
+ChatEngine::ChatEngine(AbstractLLMEngine* llmEngine, QObject* parent)
     : QObject(parent)
+    , m_worker(llmEngine)
 {
-    m_worker = new LlamaWorker();
+    m_worker->setParent(nullptr);
     m_worker->moveToThread(&m_thread);
 
     connect(&m_thread, &QThread::finished, m_worker, &QObject::deleteLater);
 
-    connect(m_worker, &LlamaWorker::tokenReady, this, &ChatEngine::tokenArrived, Qt::QueuedConnection);
-    connect(m_worker, &LlamaWorker::responseFinished, this, &ChatEngine::responseDone, Qt::QueuedConnection);
+    connect(m_worker, &AbstractLLMEngine::tokenReady, this, &ChatEngine::tokenArrived, Qt::QueuedConnection);
+    connect(m_worker, &AbstractLLMEngine::responseFinished, this, &ChatEngine::responseDone, Qt::QueuedConnection);
 
-    connect(m_worker, &LlamaWorker::modelLoaded, this, [this]{
+    connect(m_worker, &AbstractLLMEngine::modelLoaded, this, [this]{
         m_ready = true;
         emit readyChanged(m_ready);
         emit info("Model ready");
     }, Qt::QueuedConnection);
 
-    connect(m_worker, &LlamaWorker::modelLoadFailed, this, [this](const QString& e){
+    connect(m_worker, &AbstractLLMEngine::modelLoadFailed, this, [this](const QString& e){
         m_ready = false;
         emit readyChanged(m_ready);
         emit error("Model load error: " + e);
     }, Qt::QueuedConnection);
 
-    connect(m_worker, &LlamaWorker::error, this, [this](const QString& e){
+    connect(m_worker, &AbstractLLMEngine::error, this, [this](const QString& e){
         emit error("Error: " + e);
     }, Qt::QueuedConnection);
 

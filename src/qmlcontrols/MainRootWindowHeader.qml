@@ -7,7 +7,7 @@ Rectangle {
     id: headerBar
     width: parent.width
     height: 24
-    color: QTalk.palette.QTalkBrand
+    color: QTalk.palette.AppBackground
 
     Text {
         anchors.centerIn: parent
@@ -82,8 +82,7 @@ Rectangle {
             id: minimizeBtn
             width: 40; height: parent.height
             radius: 0
-            bgColor: QTalk.palette.QTalkBrand
-            hoverColor: QTalk.palette.AppBackground
+            bgColor: QTalk.palette.AppBackground
             icon.source: ScreenTools.iconWindowMinimize
 
             onClicked: {
@@ -95,8 +94,7 @@ Rectangle {
             id: maximizeBtn
             width: 40; height: parent.height
             radius: 0
-            bgColor: QTalk.palette.QTalkBrand
-            hoverColor: QTalk.palette.AppBackground
+            bgColor: QTalk.palette.AppBackground
             icon.source: ScreenTools.iconWindowMaximize
 
             onClicked: {
@@ -112,8 +110,7 @@ Rectangle {
             id: closeBtn
             width: 40; height: parent.height
             radius: 0
-            bgColor: QTalk.palette.Critical
-            hoverColor: QTalk.palette.AppBackground
+            bgColor: QTalk.palette.AppBackground
             icon.source: ScreenTools.iconQuit
 
             onClicked: {

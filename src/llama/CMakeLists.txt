@@ -5,12 +5,10 @@
 
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
-    ChatEngine.h
-    ChatEngine.cpp
-    LlamaWorker.h
-    LlamaWorker.cpp
-    LlamaWorker_p.h
-    LlamaWorker_p.cpp
+    LlamaEngine.h
+    LlamaEngine.cpp
+    LlamaEngine_p.h
+    LlamaEngine_p.cpp
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} 

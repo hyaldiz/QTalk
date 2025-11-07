@@ -1,24 +1,11 @@
 # ============================================================================
-# Chat Module
-# Manages chat operations
+# LLMEngine Module
+# Interacts with llm module
 # ============================================================================
 
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
-    Message.h
-    Message.cpp
-    ChatList.h
-    ChatList.cpp
-    User.h
-    User.cpp
-    UserList.h
-    UserList.cpp
-    UserProxyList.h
-    UserProxyList.cpp
-    ChatEngine.h
-    ChatEngine.cpp
-    ChatManager.h
-    ChatManager.cpp
+        AbstractLLMEngine.h
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME}
