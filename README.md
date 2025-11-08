@@ -1,8 +1,10 @@
 <p align="center">
-  <img src="./resources/icons/qtalk_icon.svg" alt="QTalk Logo" width="100" height="100">
-  <br>
-  <h1>QTalk: Local AI Chat Application</h1>
+  <a href="https://github.com/hyaldiz/QTalk/releases" style="text-decoration: none; color: inherit;">
+    <img src="./resources/icons/qtalk_icon.svg" alt="QTalk Logo" width="100" height="100" style="vertical-align: middle;">
+    <span style="font-size: 32px; font-weight: 600; vertical-align: middle; margin-left: 10px;">QTalk</span>
+  </a>
 </p>
+
 
 QTalk is a simple AI chat application developed with Qt, running entirely locally (offline) by using the `llama.cpp` library.
 
@@ -67,7 +69,14 @@ To use the application, you currently need to build it from the source code.
     cmake .. -DCMAKE_PREFIX_PATH=/path/to/your/Qt/version
 
     # Build the project
-    cmake --build . --config Release
+    cmake --build . -j$(nproc) --config Release
+
+    # Run unit tests
+    cmake --build . -j$(nproc) --target check
+
+    # Run standalone unit test
+    ./QTalk --unittest:<UnitTestName>
+
     ```
 
 4.  **Run the application.**

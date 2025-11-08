@@ -36,4 +36,4 @@ endfunction()
 add_subdirectory(qtkunittest)
 
 add_subdirectory(chat)
-add_qtk_test(ChatEngineTest)
+#add_qtk_test(ChatEngineTest) # Standalone test, not added to CTest (used for large or time-consuming tests)
