@@ -6,4 +6,5 @@
 void ChatEngineTest::loadModelFile()
 {
     QVERIFY(true);
+    QCOMPARE(true,true);
 }
