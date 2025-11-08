@@ -1,10 +1,7 @@
 <p align="center">
-  <a href="https://github.com/hyaldiz/QTalk/releases" style="text-decoration: none; color: inherit;">
-    <img src="./resources/icons/qtalk_icon.svg" alt="QTalk Logo" width="100" height="100" style="vertical-align: middle;">
-    <span style="font-size: 32px; font-weight: 600; vertical-align: middle; margin-left: 10px;">QTalk</span>
-  </a>
+  <img src="./resources/icons/qtalk_icon.svg" alt="QTalk Logo" width="100" height="100" style="vertical-align: middle;">
+    <span style="font-size: 48px; font-weight: 600; vertical-align: middle; margin-left: 15px; color: white;">QTalk</span>
 </p>
-
 
 QTalk is a simple AI chat application developed with Qt, running entirely locally (offline) by using the `llama.cpp` library.
 
