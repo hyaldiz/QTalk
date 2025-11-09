@@ -2,6 +2,7 @@
 #include "Message.h"
 #include "ChatEngine.h"
 #include "LlamaEngine.h"
+#include "AbstractLLMEngine.h"
 
 #include <QApplicationStatic>
 
@@ -13,17 +14,26 @@ ChatManager::ChatManager(QObject *parent)
     , m_userProxyList(new UserProxyList(this))
     , m_mainUser(new User(0, "MeAndYou", this))
     , m_openedChatUser(new User(1,"LLMModel", this))
-    , m_chatEngine(new ChatEngine(new LlamaEngine(this), this))
+    , m_chatEngine(nullptr)
     , m_lastMessage(nullptr)
 {
     connect(this, &ChatManager::sendMessage, this, &ChatManager::onSendMessage, Qt::QueuedConnection);
     connect(this, &ChatManager::sendMessage, this, &ChatManager::onAsk, Qt::QueuedConnection);
 
+    m_userProxyList->setSourceModel(m_userList);
+}
+
+void ChatManager::init(AbstractLLMEngine *llmEngine)
+{
+    if (m_chatEngine) {
+        return;
+    }
+
+    m_chatEngine = new ChatEngine(llmEngine, this);
+
     connect(m_chatEngine, &ChatEngine::tokenArrived, this, &ChatManager::onTokenArrived, Qt::QueuedConnection);
     connect(m_chatEngine, &ChatEngine::responseDone, this, &ChatManager::onResponseDone, Qt::QueuedConnection);
     connect(m_chatEngine, &ChatEngine::error, this, &ChatManager::onError);
-
-    m_userProxyList->setSourceModel(m_userList);
 }
 
 ChatManager *ChatManager::instance()

@@ -23,7 +23,6 @@ qt_policy(SET QTP0004 NEW)
 
 add_subdirectory(utilities)
 add_subdirectory(llm)
-add_subdirectory(llama)
 add_subdirectory(api)
 add_subdirectory(ui)
 add_subdirectory(qmlcontrols)

@@ -33,7 +33,9 @@ function(add_qtk_test test_name)
     add_dependencies(check ${PROJECT_NAME})
 endfunction()
 
+#add_qtk_test(StandaloneTestExampleUsage) Standalone test, not added to CTest (used for large or time-consuming tests)
+
 add_subdirectory(qtkunittest)
 
 add_subdirectory(chat)
-#add_qtk_test(ChatEngineTest) # Standalone test, not added to CTest (used for large or time-consuming tests)
+add_qtk_test(ChatEngineTest)

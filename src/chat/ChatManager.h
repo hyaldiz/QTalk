@@ -6,6 +6,7 @@
 #include "UserProxyList.h"
 
 class ChatEngine;
+class AbstractLLMEngine;
 
 Q_MOC_INCLUDE("ChatEngine.h")
 
@@ -20,6 +21,8 @@ class ChatManager : public QObject
     Q_PROPERTY(ChatEngine* chatEngine READ chatEngine CONSTANT)
 public:
     explicit ChatManager(QObject* parent = nullptr);
+
+    void init(AbstractLLMEngine* llmEngine);
 
     static ChatManager* instance();
 

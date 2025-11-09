@@ -1,5 +1,4 @@
 #include "QTKApplication.h"
-#include "CommandLineParser.h"
 #include "AppMessages.h"
 #include "UnitTestList.h"
 
@@ -20,7 +19,7 @@ int main(int argc, char** argv)
 
     AppMessages::installHandler();
 
-    QTKApplication app(argc, argv);
+    QTKApplication app(argc, argv, args);
 
     app.init();
 

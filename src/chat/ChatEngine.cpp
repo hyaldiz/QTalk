@@ -46,7 +46,7 @@ ChatEngine::~ChatEngine() {
 
 void ChatEngine::load(const QUrl& modelPath, int nCtx, int nGpuLayers) {
     m_ready = false;
-    emit readyChanged(m_ready);
+    //emit readyChanged(m_ready);
     QMetaObject::invokeMethod(m_worker, "loadModel", Qt::QueuedConnection,
                               Q_ARG(QUrl, modelPath), Q_ARG(int, nCtx), Q_ARG(int, nGpuLayers));
 }

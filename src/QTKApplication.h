@@ -5,6 +5,8 @@
 
 #include <memory>
 
+#include "CommandLineParser.h"
+
 class QTKApplication;
 
 #if defined(qApp)
@@ -28,8 +30,10 @@ class QTKApplication : public QApplication
 
     friend class QTKApplicationPrivate;
 public:
-    QTKApplication(int& argc, char** argv);
+    QTKApplication(int& argc, char** argv, CommandLineParser::Result& cli);
     ~QTKApplication();
+
+    bool runningUnitTests() const;
 
     void init();
 
