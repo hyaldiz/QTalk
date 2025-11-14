@@ -3,6 +3,7 @@
 #include <QCoreApplication>
 
 static const QString kOptUnitTest = QStringLiteral("unittest");
+static const QString kOptSimpleBootTest = QStringLiteral("simple-boot-test");
 
 namespace CommandLineParser
 {
@@ -55,6 +56,12 @@ Result parseCommandLine()
     (void)parser.addOption(unittestOpt);
 #endif
 
+    const QCommandLineOption simpleBooTestOpt(
+            kOptSimpleBootTest,
+            QCoreApplication::translate("main",""),
+            QCoreApplication::translate("main",""));
+    (void)parser.addOption(simpleBooTestOpt);
+
     const QStringList normalizedArgs = normalizeArgs(QCoreApplication::arguments());
     parser.process(normalizedArgs);
 
@@ -79,6 +86,8 @@ Result parseCommandLine()
         }
     }
 #endif
+
+    out.simpleBootTest = parser.isSet(simpleBooTestOpt);
 
     out.statusCode = Result::Status::Ok;
 

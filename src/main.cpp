@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 #ifdef QTK_UNITTEST_BUILD
         exitCode = QTKUnitTest::runTests(args.unitTests);
 #endif
-    } else{
+    } else if(!args.simpleBootTest) {
         exitCode = app.exec();
     }
 

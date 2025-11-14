@@ -22,6 +22,7 @@ struct Result
     Status statusCode = Status::Ok;
     bool runningUnitTests = false;
     QStringList unitTests;
+    bool simpleBootTest = false;
 };
 
 Result parseCommandLine();
