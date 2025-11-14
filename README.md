@@ -74,11 +74,13 @@ To use the application, you currently need to build it from the source code.
 4.  **Run the application.**
     The compiled executable will be inside the `build` directory.
 
+    ```bash
     # Run app
     ./QTalk
 
     # Run standalone unit test
     ./QTalk --unittest <UnitTestName>
+    ```
 
 
 ## 🚀 Future Plans
