@@ -49,7 +49,7 @@ To use the application, you currently need to build it from the source code.
 
 2.  **(Optional) Download a test model** using the helper script:
     ```bash
-    python fetch_models.py
+    python3 tools/llm/fetch_models.py
     ```
 
 3.  **Configure and build the project** using CMake:
