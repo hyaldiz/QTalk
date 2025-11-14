@@ -63,7 +63,7 @@ jobs:
           target: desktop
           arch: ${{ matrix.arch }}
           dir: ${{ runner.temp }}
-          modules: qtdeclarative qtquickcontrols2 qtshadertools qtimageformats qt5compat qtmultimedia
+          # modules: qtdeclarative qtquickcontrols2 qtshadertools qtimageformats qt5compat qtmultimedia
           setup-python: false
           cache: true
 
