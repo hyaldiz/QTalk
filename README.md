@@ -97,4 +97,5 @@ Although the project is very new, you are welcome to open Issues for bug reports
 
 ## 📄 License
 
-This project is distributed under the **MIT License**. See the `LICENSE` file for more details.
+QTalk is licensed under the **GNU General Public License v3.0 or later (GPLv3+)**.  
+See the [LICENSE](./LICENSE) file for the full text.
