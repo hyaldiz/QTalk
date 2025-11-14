@@ -17,22 +17,26 @@ void MockLlmEngine::loadModel(const QUrl &path, int nCtx, int nGpuLayers)
     lastArgs.loadModelPath = path;
     lastArgs.loadModelnCtx = nCtx;
     lastArgs.loadModelnGpuLayers = nGpuLayers;
+    emit loadModelCalled();
 }
 
 void MockLlmEngine::ask(const QString &userText)
 {
     calls.ask++;
     lastArgs.askUserText = userText;
+    emit askCalled();
 }
 
 void MockLlmEngine::stop()
 {
     calls.stop++;
+    emit stopCalled();
 }
 
 void MockLlmEngine::unload()
 {
     calls.unload++;
+    emit unloadCalled();
 }
 
 void MockLlmEngine::reset()

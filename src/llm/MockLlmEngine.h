@@ -15,6 +15,12 @@ public slots:
     void stop() override;
     void unload() override;
 
+signals:
+    void loadModelCalled();
+    void askCalled();
+    void stopCalled();
+    void unloadCalled();
+
 public:
     void reset();
 
