@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      fail-fast:
+      fail-fast: false
       matrix:
         build_type: [Debug, Release]
         os: [ubuntu-22.04]
