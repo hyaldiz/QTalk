@@ -1,6 +1,9 @@
 #include "QTKApplication.h"
 #include "AppMessages.h"
+
+#ifdef QTK_UNITTEST_BUILD
 #include "UnitTestList.h"
+#endif
 
 int main(int argc, char** argv)
 {
