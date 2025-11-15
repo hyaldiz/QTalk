@@ -45,8 +45,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 1
-          fetch-tags: true
-
+          
       - name: Initial setup
         uses: ./.github/actions/common
 
