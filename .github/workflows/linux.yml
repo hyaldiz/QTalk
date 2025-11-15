@@ -1,5 +1,9 @@
 name: Linux
 
+#give the write access to GITHUB_TOKEN for repo writing
+permissions:
+  contents: write
+
 on:
   push:
     branches:
