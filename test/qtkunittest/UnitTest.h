@@ -5,8 +5,11 @@
 
 Q_DECLARE_LOGGING_CATEGORY(UnitTestLog)
 
-#define UT_REGISTER_TEST(className) static UnitTestWrapper<className> className(#className, false);
-#define UT_REGISTER_TEST_STANDALONE(className) static UnitTestWrapper<className> className(#className, true);
+#define QTK_REGISTER_TEST(className) \
+    static UnitTestRegistry<className> className(#className, false);
+
+#define QTK_REGISTER_TEST_STANDALONE(className) \
+    static UnitTestRegistry<className> className(#className, true);
 
 class UnitTest : public QObject
 {
@@ -22,14 +25,14 @@ public:
 
     static void addTest(UnitTest* test);
 
+    static QList<UnitTest*>& testList();
+
 protected slots:
     virtual void init();
     virtual void cleanup();
 
 private:
     void unitTestCalled() { m_unitTestRun = true; }
-
-    static QList<UnitTest*>& testList();
 
     bool m_unitTestRun = false;
     bool m_initCalled = false;
@@ -38,10 +41,10 @@ private:
 };
 
 template<class T>
-class UnitTestWrapper
+class UnitTestRegistry
 {
 public:
-    UnitTestWrapper(const QString& name, bool standalone)
+    UnitTestRegistry(const QString& name, bool standalone)
         : m_unitTest(new T)
     {
         m_unitTest->setObjectName(name);

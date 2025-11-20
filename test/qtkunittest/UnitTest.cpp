@@ -5,7 +5,6 @@
 
 QTK_LOGGING_CATEGORY(UnitTestLog,"UnitTestLog")
 
-
 UnitTest::UnitTest(QObject *parent)
     : QObject(parent)
 {

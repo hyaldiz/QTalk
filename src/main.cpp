@@ -2,7 +2,7 @@
 #include "AppMessages.h"
 
 #ifdef QTK_UNITTEST_BUILD
-#include "UnitTestList.h"
+#include "UnitTestManager.h"
 #endif
 
 int main(int argc, char** argv)
@@ -29,7 +29,7 @@ int main(int argc, char** argv)
     int exitCode = 0;
     if(args.runningUnitTests) {
 #ifdef QTK_UNITTEST_BUILD
-        exitCode = QTKUnitTest::runTests(args.unitTests);
+        exitCode = UnitTestManager::instance()->runTests(args.unitTests);
 #endif
     } else if(!args.simpleBootTest) {
         exitCode = app.exec();

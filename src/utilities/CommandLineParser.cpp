@@ -52,14 +52,14 @@ Result parseCommandLine()
     const QCommandLineOption unittestOpt(
         kOptUnitTest,
         QCoreApplication::translate("main", "Run unit tests (optional filter value)."),
-        QCoreApplication::translate("main", "filter"));
+        QCoreApplication::translate("main", "test"));
     (void)parser.addOption(unittestOpt);
 #endif
 
     const QCommandLineOption simpleBooTestOpt(
             kOptSimpleBootTest,
-            QCoreApplication::translate("main",""),
-            QCoreApplication::translate("main",""));
+            QCoreApplication::translate("main","Run a simple startup test and exit (used for CI)."),
+            QCoreApplication::translate("main","boot"));
     (void)parser.addOption(simpleBooTestOpt);
 
     const QStringList normalizedArgs = normalizeArgs(QCoreApplication::arguments());

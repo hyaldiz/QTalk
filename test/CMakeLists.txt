@@ -4,8 +4,8 @@ endif()
 
 target_sources(${CMAKE_PROJECT_NAME}
     PRIVATE
-        UnitTestList.h
-        UnitTestList.cpp
+        UnitTestManager.h
+        UnitTestManager.cpp
 )
 
 find_package(Qt6 REQUIRED COMPONENTS Test)
