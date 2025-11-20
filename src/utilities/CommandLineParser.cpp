@@ -59,7 +59,7 @@ Result parseCommandLine()
     const QCommandLineOption simpleBooTestOpt(
             kOptSimpleBootTest,
             QCoreApplication::translate("main","Run a simple startup test and exit (used for CI)."),
-            QCoreApplication::translate("main","boot"));
+            QCoreApplication::translate("main",""));
     (void)parser.addOption(simpleBooTestOpt);
 
     const QStringList normalizedArgs = normalizeArgs(QCoreApplication::arguments());
